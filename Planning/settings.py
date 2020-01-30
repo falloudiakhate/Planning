@@ -79,7 +79,7 @@ DATABASES = {
                 'default': {
                 'ENGINE': 'django.db.backends.mysql',
                 'NAME': 'PlanningDatabase',
-                'USER': 'root',
+                'USER': 'django',
                 'PASSWORD': 'root',
                 'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
