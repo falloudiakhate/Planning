@@ -76,13 +76,16 @@ WSGI_APPLICATION = 'Planning.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': '/etc/mysql/my.cnf',
-        },
+                'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'PlanningDatabase',
+                'USER': 'root',
+                'PASSWORD': 'root',
+                'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
     }
-}
+    }
+    }
 
 
 # Password validation
