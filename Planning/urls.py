@@ -21,6 +21,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('Planning/',views.PlanningHomePage, name = "PlanningHomePage" ),
+    path('Courses/',views.PlanningCourses, name = "PlanningCourses" ),
+    path('CoursesElements/',views.PlanningCoursesElements, name = "PlanningCoursesElements" ),
+    path('CoursesDetails/',views.PlanningCoursesDetails, name = "PlanningCoursesDetails" ),
+    path('CoursesAboutus/',views.PlanningAboutus, name = "PlanningAboutus" ),
+    path('Blog/',views.PlanningBlog, name = "PlanningBlog" ),
+    path('BlogDetails/',views.PlanningBlogDetails, name = "PlanningBlogDetails" ),
+    path('PlanningInfo/',views.PlanningInfo, name = "PlanningInfo" ),
 
     
 ]

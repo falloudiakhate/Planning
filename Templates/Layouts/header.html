@@ -29,7 +29,7 @@
             <div class="container">
               <!-- Brand and toggle get grouped for better mobile display -->
               <a class="navbar-brand logo_h" href="{% url 'PlanningHomePage' %}"></a>
-                <img src="{% static 'img/2.png' %}" alt=""/></a>
+                <img src="{% static 'img/logo.png' %}" alt=""/></a>
               <button
                 class="navbar-toggler"
                 type="button"
@@ -49,12 +49,12 @@
               >
                 <ul class="nav navbar-nav menu_nav ml-auto">
                   <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'PlanningHomePage' %}"> <span class="glyphicon">&#xe021;</span> Home</a>
+                    <a class="nav-link" href="{% url 'PlanningHomePage' %}"> Home</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% static 'about-us.html' %}">Teachers</a>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'PlanningAboutus' %}">Teachers</a>
                   </li>
-                  <li class="nav-item submenu dropdown">
+                  <li class="nav-item submenu dropdown active">
                     <a
                       href="#"
                       class="nav-link dropdown-toggle"
@@ -65,20 +65,20 @@
                       >Students</a
                     >
                     <ul class="dropdown-menu">
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% static 'courses.html' %}">Courses</a>
+                      <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'PlanningCourses' %}">Courses</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="{% static 'course-details.html' %}"
+                        <a class="nav-link" href="{% url 'PlanningCoursesDetails' %}"
                           >Course Details</a
                         >
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% static 'elements.html' %}">Elements</a>
+                      <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'PlanningCoursesElements' %}">Elements</a>
                       </li>
                     </ul>
                   </li>
-                  <li class="nav-item submenu dropdown">
+                  <li class="nav-item submenu dropdown active">
                     <a
                       href="#"
                       class="nav-link dropdown-toggle"
@@ -88,19 +88,19 @@
                       aria-expanded="false"
                       >Blog</a
                     >
-                    <ul class="dropdown-menu">
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% static 'blog.html' %}">Blog</a>
+                    <ul class="dropdown-menu active">
+                      <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'PlanningBlog' %}">Blog</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="{% static 'single-blog.html' %}"
+                        <a class="nav-link" href="{% url 'PlanningBlogDetails' %}"
                           >Blog Details</a
                         >
                       </li>
                     </ul>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% static 'contact.html' %}">Info</a>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'PlanningInfo' %}">Info</a>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link search" id="search">

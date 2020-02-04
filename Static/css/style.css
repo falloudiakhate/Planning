@@ -1,23 +1,4 @@
-/*----------------------------------------------------
-@File: Default Styles
-@Author: SPONDON IT
-Author E-mail: info@spondonit.com
 
-This file contains the styling for the actual theme, this
-is the file you need to edit to change the look of the
-theme.
----------------------------------------------------- */
-/*=====================================================================
-@Template Name: Medicare Medical
-@Author: Naim LAsker
-@Developed By: Naim LAsker
-
-
-=====================================================================*/
-/*----------------------------------------------------*/
-/*font Variables*/
-/*Color Variables*/
-/*=================== fonts ====================*/
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,500|Rubik:500, 600");
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
@@ -274,7 +255,11 @@ button:focus {
     .header_area.navbar_fixed .main_menu .navbar .nav .nav-item .nav-link {
       line-height: 70px; }
     .header_area.navbar_fixed .main_menu .navbar .nav .nav-item.submenu ul .nav-item .nav-link {
-      color: #002347; }
+      color: #002347;
+      font-size: 50px
+      
+      ;
+     }
   .header_area.white-header.navbar_fixed .main_menu {
     background: #002347; }
     .header_area.white-header.navbar_fixed .main_menu .navbar .nav .nav-item.active .nav-link, .header_area.white-header.navbar_fixed .main_menu .navbar .nav .nav-item:hover .nav-link {
@@ -329,7 +314,7 @@ button:focus {
   z-index: 1;
   min-height: 900px;
   position: relative;
-  background: url("img/banner/photo.jpg") no-repeat center;
+  background: url(../img/banner/home-banner.jpg) no-repeat center;
   background-size: cover; }
   .home_banner_area .banner_inner {
     position: absolute;
