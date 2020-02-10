@@ -7,12 +7,34 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def Maquettes(request):
       
-      # maquette = Maquette.objects.all()
-      # uc_stats = EC.objects.all()  
+      maquette = Maquette.objects.all() 
+      
+      page = request.GET.get('page', 1)
+
+      paginator = Paginator(maquette, 1)
+      
+      try:
+            
+            maquette = paginator.page(page)
+      
+      except PageNotAnInteger:
+            maquette = paginator.page(1)
+      except EmptyPage:
+            maquette = paginator.page(paginator.num_pages)     
+    
+      return render(request, "Students/maquette.html", locals())
+
+
+
+def ECS(request, id):
+      
+      maquette = Maquette.objects.get(id=id)
+      
+      uc_stats = EC.objects.filter(ue__maquette__id=id) 
       
       # page = request.GET.get('page', 1)
 
-      # paginator = Paginator(uc_stats, 4)
+      # paginator = Paginator(uc_stats, 1)
       # try:
       #       uc_stats = paginator.page(page)
       # except PageNotAnInteger:
@@ -20,7 +42,9 @@ def Maquettes(request):
       # except EmptyPage:
       #       uc_stats = paginator.page(paginator.num_pages)     
     
-      return render(request, "Students/maquette.html", locals())
+      return render(request, "Students/courses.html", locals())
+
+      
 
 def PlanningCoursesElements(request):
     

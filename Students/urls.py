@@ -20,6 +20,7 @@ from Students import views
 urlpatterns = [
 
     path('Courses/',views.Maquettes, name = "PlanningCourses" ),
+    path('ECS/<int:id>',views.ECS, name = "ECS" ),
     path('CoursesElements/',views.PlanningCoursesElements, name = "PlanningCoursesElements" ),
     path('CoursesDetails/',views.PlanningCoursesDetails, name = "PlanningCoursesDetails" ),
 

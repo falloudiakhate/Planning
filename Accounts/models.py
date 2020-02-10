@@ -1,11 +1,14 @@
 from django.db import models
 
+# Create your models here.
+from django.db import models
+
 class Utilisateur(models.Model):
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     pseudo = models.CharField(max_length=50)
     telephone = models.CharField( max_length=50)
-    avatar = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None)
+    avatar = models.ImageField(upload_to="", height_field=None, width_field=None, max_length=None)
     email = models.EmailField(max_length = 254)
 
 
@@ -14,7 +17,7 @@ class Professeur(models.Model):
     prenom = models.CharField(max_length=50)
     pseudo = models.CharField(max_length=50)
     telephone = models.CharField(max_length=50)
-    avatar = models.ImageField( upload_to=None, height_field=None, width_field=None, max_length=None)
+    avatar = models.ImageField( upload_to="", width_field=None, max_length=None)
     email = models.EmailField(max_length = 254)
     num_professeur = models.IntegerField()
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
@@ -24,7 +27,7 @@ class Chef_Departement(models.Model):
     prenom = models.CharField(max_length=50)
     pseudo = models.CharField(max_length=50)
     telephone = models.CharField(max_length=50)
-    avatar = models.ImageField( upload_to=None, height_field=None, width_field=None, max_length=None)
+    avatar = models.ImageField( upload_to="", height_field=None, width_field=None, max_length=None)
     email = models.EmailField(max_length = 254)
     num_professeur = models.IntegerField()
     num_chef_departement = models.IntegerField()
@@ -37,7 +40,7 @@ class Professeur_Pedagogique(models.Model):
     prenom = models.CharField(max_length=50)
     pseudo = models.CharField(max_length=50)
     telephone = models.CharField(max_length=50)
-    avatar = models.ImageField( upload_to=None, height_field=None, width_field=None, max_length=None)
+    avatar = models.ImageField( upload_to="", height_field=None, width_field=None, max_length=None)
     email = models.EmailField(max_length = 254)
     num_professeur = models.IntegerField()
     num_professeur_pedagogique = models.IntegerField()
@@ -66,7 +69,7 @@ class Eleve(models.Model):
     prenom = models.CharField(max_length=50)
     pseudo = models.CharField(max_length=50)
     telephone = models.CharField(max_length=50)
-    avatar = models.ImageField( upload_to=None, height_field=None, width_field=None, max_length=None)
+    avatar = models.ImageField( upload_to="", height_field=None, width_field=None, max_length=None)
     email = models.EmailField(max_length = 254)
     num_eleve = models.IntegerField()
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
@@ -77,7 +80,7 @@ class Responsable(models.Model):
     prenom = models.CharField(max_length=50)
     pseudo = models.CharField(max_length=50)
     telephone = models.CharField(max_length=50)
-    avatar = models.ImageField( upload_to=None, height_field=None, width_field=None, max_length=None)
+    avatar = models.ImageField( upload_to="", height_field=None, width_field=None, max_length=None)
     email = models.EmailField(max_length = 254)
     num_eleve = models.IntegerField()
     eleve = models.ForeignKey(Eleve, on_delete=models.CASCADE)
@@ -93,11 +96,13 @@ class Cahier_De_Texte(models.Model):
 class Maquette(models.Model):
     nom = models.CharField(max_length=50)
     date = models.DateField( auto_now=False, auto_now_add=False)
+    description = models.TextField()
 
 class UE(models.Model):
     nom = models.CharField(max_length=50)
     description = models.TextField()
     code = models.CharField( max_length=50)
+    avatar = models.ImageField(blank=True, null=True, upload_to="", height_field=None, width_field=None, max_length=None)
     maquette = models.ForeignKey(Maquette, on_delete=models.CASCADE)
 
 class EC(models.Model):
