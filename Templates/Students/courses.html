@@ -1,0 +1,114 @@
+{% extends "Layouts/base.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+  <div class="banner_inner d-flex align-items-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="banner_content text-center">
+            <h2>Courses</h2>
+            <div class="page_link">
+              <a href="index.html">Home</a>
+              <a href="courses.html">Courses</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================End Home Banner Area =================-->
+
+
+
+    <!--================ Start Trainers Area =================-->
+  
+
+    <section class="trainer_area section_gap_top">
+      
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="main_title">
+              <h2 class="mb-3">Nom  </h2>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center d-flex align-items-center">
+
+          {% for uc in uc_stats  %}
+            
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="{% static 'img/trainer/t1.jpg' %}" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>Nom : {{uc.nom }}</h4>
+              <p class="designation">Coefficient : {{ uc.coef }}</p>
+              <div class="mb-4">
+                <p>
+                 {{uc.description}}
+                </p>
+              </div>
+              <div class="align-items-center justify-content-center d-flex">
+                <a href="#"><i class="ti-facebook"></i></a>
+                <a href="#"><i class="ti-twitter"></i></a>
+                <a href="#"><i class="ti-linkedin"></i></a>
+                <a href="#"><i class="ti-pinterest"></i></a>
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
+
+
+
+        </div>
+
+
+        
+
+      </div>
+    </section>
+
+    {% if uc_stats.has_other_pages %}
+  <ul class="pagination">
+    {% if uc_stats.has_previous %}
+      <li><a href="?page={{ uc_stats.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in uc_stats.paginator.page_range %}
+      {% if uc_stats.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if uc_stats.has_next %}
+      <li><a href="?page={{ uc_stats.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+    <!--================ End Trainers Area =================-->
+
+
+
+    
+
+  
+
+
+{% endblock content %}
