@@ -111,6 +111,7 @@ class EC(models.Model):
     charge_horaire = models.IntegerField()
     coef = models.IntegerField()
     ue = models.ForeignKey(UE, on_delete=models.CASCADE)
+    avatar = models.ImageField(blank=True, null=True, upload_to="", height_field=None, width_field=None, max_length=None)
 
 
 

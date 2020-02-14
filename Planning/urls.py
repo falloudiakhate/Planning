@@ -16,8 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from Planning import views
+from django.conf.urls.static import static
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
     
     path('Students/', include('Students.urls')),
@@ -25,7 +29,5 @@ urlpatterns = [
     path('CoursesAboutus/',views.PlanningAboutus, name = "PlanningAboutus" ),
     path('Blog/',views.PlanningBlog, name = "PlanningBlog" ),
     path('BlogDetails/',views.PlanningBlogDetails, name = "PlanningBlogDetails" ),
-    path('PlanningInfo/',views.PlanningInfo, name = "PlanningInfo" ),
-
-    
-]
+    path('PlanningInfo/',views.PlanningInfo, name = "PlanningInfo" )
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

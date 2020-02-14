@@ -5,6 +5,7 @@ from .models import *
 admin.site.register(Utilisateur)
 admin.site.register(Professeur)
 admin.site.register(Eleve)
+admin.site.register(Classe)
 admin.site.register(UE)
 admin.site.register(EC)
 admin.site.register(Maquette)
