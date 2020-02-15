@@ -7,7 +7,11 @@ class Utilisateur(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)
     telephone = models.CharField( max_length=50)
     #avatar = models.ImageField(upload_to="", height_field=None, width_field=None, max_length=None)
+<<<<<<< HEAD
     fonction = models.CharField(max_length=50,default='null')
+=======
+    fonction = models.CharField(max_length=50)
+>>>>>>> 3e3de7029b2ff79bd0db4607ba72edf3ce3b13d2
 class Time_Table(models.Model):
     date = models.DateTimeField( auto_now=False, auto_now_add=False)
     document = models.FileField( upload_to=None, max_length=100)
@@ -17,6 +21,10 @@ class Publication(models.Model):
     date = models.DateTimeField( auto_now=False, auto_now_add=False)
     message = models.TextField()
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3e3de7029b2ff79bd0db4607ba72edf3ce3b13d2
 class Classe(models.Model):
     nom = models.CharField(max_length=50)
     annee = models.DateField(auto_now=False, auto_now_add=False)
@@ -48,7 +56,6 @@ class EC(models.Model):
     charge_horaire = models.IntegerField()
     coef = models.IntegerField()
     ue = models.ForeignKey(UE, on_delete=models.CASCADE)
-    avatar = models.ImageField(blank=True, null=True, upload_to="", height_field=None, width_field=None, max_length=None)
 
 
 
