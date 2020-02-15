@@ -248,12 +248,69 @@
               <p>It is high time for learning</p>
               <form
                 class="form_area"
-                id="myForm"
-                action="{% url 'PlanningBlog' %}"
+                action="{% url 'PlanningHomePage' %}"
                 method="post"
               >
-              {% csrf_token %}
-              {{ form.as_p}}
+
+                 <div class="row">
+                  <div class="col-lg-12 form_group">
+                    {% csrf_token %}
+                    {{form_user.as_p}}
+                    {{form_utilisateur.as_p}}
+                    
+                    <!--<input
+                      name="nom"
+                      placeholder="Your lastname"
+                      required=""
+                      type="text"
+                    />
+		                <input
+                      name="prenom"
+                      placeholder="Your fisrtname"
+                      required=""
+                      type="text"
+                    />
+		                <input
+                      name="pseudo"
+                      placeholder="Your pseudo"
+                      required=""
+                      type="text"
+                    />
+                    <input
+                      name="telephone"
+                      placeholder="Your Phone Number"
+                      required=""
+                      type="tel"
+                    />
+                    <input
+                      name="email"
+                      placeholder="Your Email Address"
+                      pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                      required=""
+                      type="email"
+                    />
+		               <input
+                      name="password"
+                      placeholder="Your password"
+                      required=""
+                      type="password"
+                    />
+                    <select name="numero">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <optio
+
+                    </select>
+                      
+                    
+		               <label>choose a pic for your avatar</label>
+		               <input
+                      name="avatar"
+                      type="file"
+		                  accept="image/png, image/jpeg"
+                   /> -->
+                  </div>
                
                   <div class="col-lg-12 text-center">
                     <button class="primary-btn">Submit</button>

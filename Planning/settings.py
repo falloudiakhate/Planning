@@ -131,3 +131,5 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+#creation de profile
+AUTH_PROFILE_MODULE = 'Accounts.Utilisateur'
