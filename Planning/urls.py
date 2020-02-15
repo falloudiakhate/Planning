@@ -29,5 +29,7 @@ urlpatterns = [
     path('CoursesAboutus/',views.PlanningAboutus, name = "PlanningAboutus" ),
     path('Blog/',views.PlanningBlog, name = "PlanningBlog" ),
     path('BlogDetails/',views.PlanningBlogDetails, name = "PlanningBlogDetails" ),
-    path('PlanningInfo/',views.PlanningInfo, name = "PlanningInfo" )
+    path('PlanningInfo/',views.PlanningInfo, name = "PlanningInfo" ),
+    path('TimeTable/',views.PlanningTimeTable, name = "PlanningTimeTable" ),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -22,3 +22,8 @@ def PlanningBlogDetails(request):
 def PlanningInfo(request):
     
       return render(request, "Planning/info.html")
+
+
+def PlanningTimeTable(request):
+    
+      return render(request, "Teachers/time_table.html")
