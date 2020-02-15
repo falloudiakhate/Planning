@@ -34,4 +34,13 @@ def PlanningBlogDetails(request):
 
 def PlanningInfo(request):
     
+<<<<<<< HEAD
     return render(request, "Planning/info.html")
+=======
+      return render(request, "Planning/info.html")
+
+
+def PlanningTimeTable(request):
+    
+      return render(request, "Teachers/time_table.html")
+>>>>>>> 9fb9e47ab508eae61af2da88520cb8c95acf6b30
