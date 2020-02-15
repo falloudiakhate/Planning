@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Students import views
+from django.conf.urls.static import static
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
 
     path('Courses/',views.Maquettes, name = "PlanningCourses" ),
     path('ECS/<int:id>',views.ECS, name = "ECS" ),
     path('CoursesElements/',views.PlanningCoursesElements, name = "PlanningCoursesElements" ),
-    path('CoursesDetails/',views.PlanningCoursesDetails, name = "PlanningCoursesDetails" ),
+    path('CoursesDetails/<int:id>',views.PlanningCoursesDetails, name = "PlanningCoursesDetails" ),
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

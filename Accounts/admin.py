@@ -3,6 +3,7 @@ from .models import *
 
 # Register your models here.
 admin.site.register(Utilisateur)
+admin.site.register(Classe)
 admin.site.register(UE)
 admin.site.register(EC)
 admin.site.register(Maquette)

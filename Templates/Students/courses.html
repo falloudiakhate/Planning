@@ -16,7 +16,7 @@
           <div class="banner_content text-center">
             <h2>Courses</h2>
             <div class="page_link">
-              <a href="index.html">Home</a>
+              <a href="{% url 'PlanningHomePage' %}">Home</a>
               <a href="courses.html">Courses</a>
             </div>
           </div>
@@ -36,9 +36,16 @@
       
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-lg-5">
+          <div class="col-lg-12">
             <div class="main_title">
-              <h2 class="mb-3">{{maquette.nom}}  </h2>
+              
+              <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <h2 class="mb-20 justify-content-center">  Maquette &nbsp; {{maquette.nom }} &nbsp;Last Update : {{maquette.date}} </h2>
+                  <span class="badge badge-primary badge-pill">Nombre Total Module : {{uc_count}}</span>
+                </li>
+               
+              </ul>
 
             </div>
           </div>
@@ -50,14 +57,14 @@
             
           <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
             <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="{% static 'img/trainer/t1.jpg' %}" alt="" />
+             <a href="{% url 'PlanningCoursesDetails' uc.id %}"><img class="img-fluid"   src= "{{ uc.avatar.url }}"/></a> 
             </div>
             <div class="meta-text text-sm-center">
               <h4>Nom : {{uc.nom }}</h4>
-              <p class="designation">Coefficient : {{ uc.coef }}</p>
+              <p class="designation">Charge Horaire : {{ uc.charge_horaire }}Heures</p>
               <div class="mb-4">
                 <p>
-                 {{uc.description}}
+                UE : {{uc.ue.nom}}
                 </p>
               </div>
               <div class="align-items-center justify-content-center d-flex">
@@ -81,30 +88,57 @@
       </div>
     </section>
 
-    <!-- {% if uc_stats.has_other_pages %}
-  <ul class="pagination">
-    {% if uc_stats.has_previous %}
-      <li><a href="?page={{ uc_stats.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in uc_stats.paginator.page_range %}
-      {% if uc_stats.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if uc_stats.has_next %}
-      <li><a href="?page={{ uc_stats.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
-{% endif %} -->
+ 
     <!--================ End Trainers Area =================-->
 
 
+    <nav aria-label="Page navigation example">
+      {% if uc_stats.has_other_pages %}
+
+        <ul class="pagination justify-content-center">
+
+          {% if uc_stats.has_previous %}
+
+          <li class="page-item">
+            <a class="page-link active" href="?page={{ uc_stats.previous_page_number }}">Previous</a>
+          </li>
+
+          {% else %}
+
+          <li class="disabled"><span>Previous</span></li>
+
+          {% endif %}
+
+          {% for i in uc_stats.paginator.page_range %}
+
+          {% if uc_stats.number == i %}
+
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+
+          {% else %}
+
+          <li class="page-item" ><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+
+          {% endif %}
+
+          {% endfor %}
+
+          {% if uc_stats.has_next %}
+
+          <li class="page-item">
+            <a class="page-link" href="?page={{ uc_stats.next_page_number }}">Next</a>
+          </li>
+
+          {% else %}
+
+          <li class="disabled"><span>Next</span></li>
+
+          {% endif %}
+        </ul>
+
+        {% endif %}
+
+      </nav>
 
     
 
