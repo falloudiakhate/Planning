@@ -156,8 +156,124 @@
     </div>
     <!--================ End Popular Courses Area =================-->
 
+<<<<<<< HEAD
+    <!--================ Start Registration Area =================-->
+    <div id="Register" class="section_gap registration_area">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-7">
+            <div class="row clock_sec clockdiv" id="clockdiv">s
+              <div class="col-lg-12">
+                <h1 class="mb-3">Register Now</h1>
+                <p>
+                  There is a moment in the life of any aspiring astronomer that
+                  it is time to buy that first telescope. It’s exciting to think
+                  about setting up your own viewing station.
+                </p>
+              </div>
+              <div class="col clockinner1 clockinner">
+                <h1 class="days">150</h1>
+                <span class="smalltext">Days</span>
+              </div>
+              <div class="col clockinner clockinner1">
+                <h1 class="hours">23</h1>
+                <span class="smalltext">Hours</span>
+              </div>
+              <div class="col clockinner clockinner1">
+                <h1 class="minutes">47</h1>
+                <span class="smalltext">Mins</span>
+              </div>
+              <div class="col clockinner clockinner1">
+                <h1 class="seconds">59</h1>
+                <span class="smalltext">Secs</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 offset-lg-1">
+            <div class="register_form">
+              <h3>Courses for Free</h3>
+              <p>It is high time for learning</p>
+              <form
+                class="form_area"
+                action="{% url 'PlanningHomePage' %}"
+                method="post"
+              >
+
+                 <div class="row">
+                  <div class="col-lg-12 form_group">
+                    {% csrf_token %}
+                    {{form_user.as_p}}
+                    {{form_utilisateur.as_p}}
+                    
+                    <!--<input
+                      name="nom"
+                      placeholder="Your lastname"
+                      required=""
+                      type="text"
+                    />
+		                <input
+                      name="prenom"
+                      placeholder="Your fisrtname"
+                      required=""
+                      type="text"
+                    />
+		                <input
+                      name="pseudo"
+                      placeholder="Your pseudo"
+                      required=""
+                      type="text"
+                    />
+                    <input
+                      name="telephone"
+                      placeholder="Your Phone Number"
+                      required=""
+                      type="tel"
+                    />
+                    <input
+                      name="email"
+                      placeholder="Your Email Address"
+                      pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                      required=""
+                      type="email"
+                    />
+		               <input
+                      name="password"
+                      placeholder="Your password"
+                      required=""
+                      type="password"
+                    />
+                    <select name="numero">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <optio
+
+                    </select>
+                      
+                    
+		               <label>choose a pic for your avatar</label>
+		               <input
+                      name="avatar"
+                      type="file"
+		                  accept="image/png, image/jpeg"
+                   /> -->
+                  </div>
+               
+                  <div class="col-lg-12 text-center">
+                    <button class="primary-btn">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--================ End Registration Area =================-->
+=======
  
 
+>>>>>>> 9fb9e47ab508eae61af2da88520cb8c95acf6b30
 
     <!--================ Start Trainers Area =================-->
     <section  class="trainer_area section_gap_top">
