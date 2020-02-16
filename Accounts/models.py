@@ -1,13 +1,14 @@
 from django.db import models
-
-# Create your models here.
+from Accounts.forms import Function
 from django.db import models
 from django.contrib.auth.models import User
+
+
 class Utilisateur(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)
     telephone = models.CharField( max_length=50)
-    #avatar = models.ImageField(upload_to="", height_field=None, width_field=None, max_length=None)
-    fonction = models.CharField(max_length=50)
+    avatar = models.ImageField(upload_to="", height_field=None, width_field=None, max_length=None)
+    fonction = models.CharField(max_length=50,choices=Function)
 
 class Time_Table(models.Model):
     date = models.DateTimeField( auto_now=False, auto_now_add=False)
