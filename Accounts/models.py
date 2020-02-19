@@ -1,24 +1,21 @@
 from django.db import models
-from Accounts.forms import Function
 from django.db import models
 from django.contrib.auth.models import User
 
 
 class Utilisateur(models.Model):
+    fonction=(
+         ('Eleve','Eleve'),
+         ('Professeur','Professeur'),
+         ('Chef_department','Chef_department'),
+         ('Responsable','Responsable'),
+         ('Responsable_pedagogique','Responsable_pedagogique')
+)
     user=models.OneToOneField(User, on_delete=models.CASCADE)
     telephone = models.CharField( max_length=50)
-<<<<<<< HEAD
-    #avatar = models.ImageField(upload_to="", height_field=None, width_field=None, max_length=None)
-    fonction = models.CharField(max_length=50)
-=======
     avatar = models.ImageField(upload_to="", height_field=None, width_field=None, max_length=None)
-    fonction = models.CharField(max_length=50,choices=Function)
+    fonction = models.CharField(max_length=50,choices=fonction)
 
-class Time_Table(models.Model):
-    date = models.DateTimeField( auto_now=False, auto_now_add=False)
-    document = models.FileField( upload_to=None, max_length=100)
-    utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
->>>>>>> 7b94f387d8d3b155a1ba1c2f994b9287c78a0c7d
 
 class Publication(models.Model):
     date = models.DateTimeField( auto_now=False, auto_now_add=False)

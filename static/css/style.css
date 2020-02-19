@@ -329,7 +329,7 @@ button:focus {
   z-index: 1;
   min-height: 900px;
   position: relative;
-  background: url(../img/banner/home-banner.jpg) no-repeat center;
+  background: url(../img/banner/1.JPG) no-repeat center;
   background-size: cover; }
   .home_banner_area .banner_inner {
     position: absolute;
@@ -1666,7 +1666,7 @@ button:focus {
     .modal-message .modal-dialog .modal-content .modal-header h2 {
       display: block;
       text-align: center;
-      color: #fdc632;
+      color:white;
       padding-bottom: 10px;
       font-family: "Roboto", sans-serif; }
     .modal-message .modal-dialog .modal-content .modal-header p {
@@ -1704,7 +1704,23 @@ button:focus {
     .sample-text-area p del {
       color: #fdc632; }
     .sample-text-area p u {
-      color: #fdc632; }
+      color: #fdc632; }  <div class="banner_inner">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="banner_content text-center">
+              <h2 class="text-uppercase mt-4 mb-5" style="color: white;">
+                IT DEPARTEMENT THIES POLYTECHNIC
+              </h2>
+              <div>
+                <a href="#" class="primary-btn2 mb-3 mb-sm-0">Sign in</a>
+                <a href="#" class="primary-btn ml-sm-3 ml-0">Sign up</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 /*============== End Elements Area css ================*/
 /*==============Elements Button Area css ================*/
@@ -1728,7 +1744,7 @@ button:focus {
     color: #002347;
     background: transparent; }
     .button-group-area .link:hover {
-      color: #fff; }
+      color: #002347; }
   .button-group-area .disable {
     background: transparent;
     color: #007bff;
@@ -1752,9 +1768,9 @@ button:focus {
     background: #298cdf; }
 
 .warning {
-  background: #f4e700; }
+  background:blue; }
   .warning:before {
-    background: #e1d608; }
+    background:blue; }
 
 .danger {
   background: #f54940; }

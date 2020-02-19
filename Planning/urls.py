@@ -31,5 +31,7 @@ urlpatterns = [
     path('BlogDetails/',views.PlanningBlogDetails, name = "PlanningBlogDetails" ),
     path('PlanningInfo/',views.PlanningInfo, name = "PlanningInfo" ),
     path('TimeTable/',views.PlanningTimeTable, name = "PlanningTimeTable" ),
+    path('Signup/',views.Signup, name = "Signup" ),
+    path('Login/',views.Login, name = "Login" ),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

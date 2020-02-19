@@ -1,0 +1,51 @@
+
+{% extends "Layouts/base.html" %}
+
+
+{% block content %}
+{% load static %}
+<section class="home_banner_area">
+	<div class="banner_inner">
+	  <div class="container">
+		<div class="wrapper" style="margin-top:200px">
+			<div class="inner" style="margin-top:170px">
+				<div class="image-holder">
+					<img src="{% static 'imagesss/6.JPG' %}" width="600px" height="400px" alt="">
+				</div>
+				<form action="{% url 'Login' %}" method="POST">
+					{% csrf_token %}
+                    <h3>Login FORM</h3>
+                  
+					<div class="form-wrappr">
+						<input type="text" placeholder="Username" class="form-control">
+						
+					</div>
+					<div class="form-wrappr">
+						<input type="text" placeholder="Email Address" class="form-control">
+						
+					</div>
+		
+					<div class="form-wrappr">
+						<input type="password" placeholder="Password" class="form-control">
+						
+					</div>
+					<div class="form-wrappr">
+						<input type="password" placeholder="Confirm Password" class="form-control">
+						
+					</div>
+					<button>Login
+						<i class="zmdi zmdi-arrow-right"></i>
+					</button>
+				</form>
+			</div>
+        </div>
+	  </div>
+	</div>
+  </section>
+  
+
+
+
+
+        
+{% endblock content %}

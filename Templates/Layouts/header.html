@@ -2,116 +2,123 @@
 {% block content %}
 
 {% load static %}
+<header class="header">
+			
+ <!--================ Start Header Menu Area =================-->
+ <header class="header_area" style="background-color: #002347;">
+    <div class="main_menu">
+      <div class="search_input" id="search_input_box">
+        <div class="container">
+          <form class="d-flex justify-content-between" method="" action="">
+            <input
+              type="text"
+              class="form-control"
+              id="search_input"
+              placeholder="Search Here"
+            />
+            <button type="submit" class="btn"></button>
+            <span
+              class="ti-close"
+              id="close_search"
+              title="Close Search"
+            ></span>
+          </form>
+        </div>
+      </div>
 
-    <!--================ Start Header Menu Area =================-->
-    <header class="header_area">
-        <div class="main_menu">
-          <div class="search_input" id="search_input_box">
-            <div class="container">
-              <form class="d-flex justify-content-between" method="" action="">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="search_input"
-                  placeholder="Search Here"
-                />
-                <button type="submit" class="btn"></button>
-                <span
-                  class="ti-close"
-                  id="close_search"
-                  title="Close Search"
-                ></span>
-              </form>
-            </div>
-          </div>
-  
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <a class="navbar-brand logo_h" href="{% url 'PlanningHomePage' %}"></a>
-                <img src="{% static 'img/logo.png' %}" alt="" width="250px" height="150px"/></a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="icon-bar"></span> <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div
-                class="collapse navbar-collapse offset"
-                id="navbarSupportedContent"
-              >
-                <ul class="nav navbar-nav menu_nav ml-auto">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <a class="navbar-brand logo_h" href="{% url 'PlanningHomePage'%}" style="font-size:x-large ;color:white; font-size:60px" >
+            
+            PlanIT</a>
+          
+            
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="icon-bar"></span> <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div
+            class="collapse navbar-collapse offset"
+            id="navbarSupportedContent"
+          >
+            <ul class="nav navbar-nav menu_nav ml-auto" >
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'PlanningHomePage' %}" style="font-size:x-large; color:white"> Home</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'PlanningAboutus' %}" style="font-size:x-large ;color:white">Teachers</a>
+              </li>
+              <li class="nav-item submenu dropdown active">
+                <a
+                  href="#"
+                  class="nav-link dropdown-toggle"
+                  data-toggle="dropdown"
+                  role="button"
+                  aria-haspopup="true"
+                  aria-expanded="false" style="font-size:x-large; color:white;"
+                  >Courses</a
+                >
+                <ul class="dropdown-menu">
                   <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'PlanningHomePage' %}"> Home</a>
-                  </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'PlanningAboutus' %}">Teachers</a>
-                  </li>
-                  <li class="nav-item submenu dropdown active">
-                    <a
-                      href="#"
-                      class="nav-link dropdown-toggle"
-                      data-toggle="dropdown"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      >Courses</a
-                    >
-                    <ul class="dropdown-menu">
-                      <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'PlanningCourses' %}">Maquette</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'PlanningTimeTable' %}" >Planning</a >
-                      </li>
-                      <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'PlanningCoursesElements' %}">Elements</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item submenu dropdown active">
-                    <a
-                      href="#"
-                      class="nav-link dropdown-toggle"
-                      data-toggle="dropdown"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      >Blog</a
-                    >
-                    <ul class="dropdown-menu active">
-                      <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'PlanningBlog' %}">Blog</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'PlanningBlogDetails' %}"
-                          >Blog Details</a
-                        >
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'PlanningInfo' %}">Info</a>
+                    <a class="nav-link" href="{% url 'PlanningCourses' %}" style="font-size:x-large;">Maquette</a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link search" id="search">
-                      <i class="ti-search"></i>
-                    </a>
+                    <a class="nav-link" href="{% url 'PlanningTimeTable' %}"style="font-size:x-large;" >Planning</a >
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'PlanningCoursesElements' %}" style="font-size:x-large;">Elements</a>
                   </li>
                 </ul>
-              </div>
-            </div>
-          </nav>
+              </li>
+              <li class="nav-item submenu dropdown active">
+                <a
+                  href="#"
+                  class="nav-link dropdown-toggle"
+                  data-toggle="dropdown"
+                  role="button"
+                  aria-haspopup="true"
+                  aria-expanded="false" style="font-size:x-large ;color:white"
+                  >Blog</a
+                >
+                <ul class="dropdown-menu active">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'PlanningBlog' %}" style="font-size:x-large ;">Blog</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'PlanningBlogDetails' %}" style="font-size:x-large;"
+                      >Blog Details</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'PlanningInfo' %}" style="font-size:x-large; color:white">Info</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link search" id="search" style="font-size:x-large; color:white">
+                  <i class="ti-search"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </header>
-      <!--================ End Header Menu Area =================-->
+      </nav>
+    </div>
+  </header>
+  
+  
+
+
     
 {% endblock content %}
     
