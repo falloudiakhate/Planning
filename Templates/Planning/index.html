@@ -169,11 +169,12 @@
             <div class="col-lg-12 col-md-12">
               <div class="single_event position-relative">
                 <div class="event_thumb">
-                  <div class="embed-responsive embed-responsive-21by966">
-    
-                    <video controls src="{%  static '/video/1.mkv' %}"  width="1000" height="222" controls="controls">Ici la description alternative</video>
-              
-                  </div>
+          
+                    <video width="1200" height="300" controls>
+                      <source src="{% static 'video/1.mkv' %}" type="video/mp4">
+                    </video>
+                  
+  
                 </div>
                 <div class="event_detai">
                   <div class="d-flex mb-4">
@@ -521,5 +522,6 @@
     </div>
     <!-- ================ End Testimonial Area ================= -->
 
+   
 
 {% endblock content %}
