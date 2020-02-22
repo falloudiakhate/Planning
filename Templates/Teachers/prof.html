@@ -1,0 +1,107 @@
+{% extends "Layouts/newbase.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+<div class="row">
+    
+    <section class="panel panel-primary">
+        <header class="panel-heading">
+            <div class="panel-actions">
+                <a href="#" class="fa fa-caret-down"></a>
+            </div>
+
+            <h2 class="panel-title">Les Professeurs Du Departement IT</h2>
+        </header>
+        <div class="panel-body">
+            <div>Nombre Total De Professeurs : {{summ}}</div>
+        </div>
+    </section>
+
+</div>
+
+<div class="row">
+
+    {% for prof in listeProf  %}
+      
+    
+
+    <div class="pricing-table">
+        
+        <div class="col-lg-3 col-sm-6">
+            <div class="plan most-popular">
+                <div class="plan-ribbon-wrapper"><div class="plan-ribbon">Professeur</div></div>
+                <h3>{{prof.user.first_name}} {{prof.user.last_name}}<span class="panel-heading-profile-picture">
+                    
+                    <img src={{prof.avatar.url}}>
+                    </span></h3>
+                <a class="btn btn-lg btn-primary" href="#">Message</a>
+                <ul>
+                    <li><b>Telephone</b> {{prof.telephone}}</li>
+                    <li><b>Email</b> {{prof.user.email}}</li>
+
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+
+    {% endfor %}
+
+</div>
+                      
+<nav aria-label="Page navigation example">
+    {% if listeProf.has_other_pages %}
+
+      <ul class="pagination justify-content-center">
+
+        {% if listeProf.has_previous %}
+
+        <li class="page-item">
+          <a class="page-link active" href="?page={{ listeProf.previous_page_number }}">Previous</a>
+        </li>
+
+        {% else %}
+
+        <li class="disabled"><span>Previous</span></li>
+
+        {% endif %}
+
+        {% for i in listeProf.paginator.page_range %}
+
+        {% if listeProf.number == i %}
+
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+
+        {% else %}
+
+        <li class="page-item" ><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+
+        {% endif %}
+
+        {% endfor %}
+
+        {% if listeProf.has_next %}
+
+        <li class="page-item">
+          <a class="page-link" href="?page={{ listeProf.next_page_number }}">Next</a>
+        </li>
+
+        {% else %}
+
+        <li class="disabled"><span>Next</span></li>
+
+        {% endif %}
+      </ul>
+
+      {% endif %}
+
+    </nav>                     
+  
+			
+            
+
+{% endblock content %}

@@ -33,5 +33,9 @@ urlpatterns = [
     path('TimeTable/',views.PlanningTimeTable, name = "PlanningTimeTable" ),
     path('Signup/',views.Signup, name = "Signup" ),
     path('Login/',views.Login, name = "Login" ),
+    path('InfoProf/',views.InfoProf, name = "InfoProf" ),
+    path('InfoClasses/',views.InfoClasses, name = "InfoClasses" ),
+    path('ListeEleve/<int:id>',views.ListeEleve, name = "ListeEleve" ),
+
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

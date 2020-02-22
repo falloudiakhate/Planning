@@ -23,8 +23,10 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
 
     path('Courses/',views.Maquettes, name = "PlanningCourses" ),
+    path('ListeStudent/',views.ListeStudent, name = "ListeStudent" ),
     path('ECS/<int:id>',views.ECS, name = "ECS" ),
     path('CoursesElements/',views.PlanningCoursesElements, name = "PlanningCoursesElements" ),
     path('CoursesDetails/<int:id>',views.PlanningCoursesDetails, name = "PlanningCoursesDetails" ),
-
+    path('AddMaquette/',views.AddMaquette, name = "AddMaquette" ),
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

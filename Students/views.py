@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from Accounts.models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 
 
 # Create your views here.
@@ -52,6 +53,29 @@ def ECS(request, id):
     
       return render(request, "Students/courses.html", locals())
 
+
+def ListeStudent(request):
+      
+      
+      listeStudent = Utilisateur.objects.select_related("classe").all().filter(Q(fonction = "Eleve") | 
+                                       Q(fonction = "Responsable"))
+      
+      total = listeStudent.count()
+      
+     
+      
+      page = request.GET.get('page', 1)
+
+      paginator = Paginator(listeStudent, 15)
+      try:
+            listeStudent = paginator.page(page)
+      except PageNotAnInteger:
+            listeStudent = paginator.page(1)
+      except EmptyPage:
+            listeStudent = paginator.page(paginator.num_pages)     
+    
+      return render(request, "Students/listeEleve.html", locals())
+
       
 
 def PlanningCoursesElements(request):
@@ -63,3 +87,8 @@ def PlanningCoursesDetails(request, id):
       ecs = EC.objects.get(id=id)
     
       return render(request, "Students/course-details.html", locals())
+
+
+
+def AddMaquette(request):
+      return render(request, "Students/addmaquette.html", locals())

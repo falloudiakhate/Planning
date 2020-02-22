@@ -1,0 +1,207 @@
+{% extends "Layouts/newbase.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+<div class="row">
+    
+    <section class="panel panel-primary">
+        <header class="panel-heading">
+            <div class="panel-actions">
+                <a href="#" class="fa fa-caret-down"></a>
+            </div>
+
+            <h2 class="panel-title">Les Eleves et Professeurs De La Classe &nbsp; &nbsp; {{classe.nom}} &nbsp; &nbsp;{{classe.annee}}</h2>
+        </header>
+        <div class="panel-body">
+            <div>Nombre Total D'eleves : {{sume}}</div>
+        </div>
+
+        <div class="panel-body">
+            <div>Nombre Total De Professeurs : {{sumee}}</div>
+        </div>
+    </section>
+
+</div>
+
+    
+
+    
+<!-- start: page -->
+<div class="row">
+    <div class="col-md-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <div class="panel-actions">
+                    <a href="#" class="fa fa-caret-down"></a>
+                </div>
+
+                <h2 class="panel-title">La Liste Des Eleves</h2>
+            </header>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table mb-none">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>telephone</th>
+                            </tr>
+                        </thead>
+                        {% for eleve in liste  %}
+                        <tbody>
+                            <tr>
+                                <td><img  alt="" class="img-responsive img-rounded" src="{{ eleve.avatar.url }}" width="100px" height="100px" ></td>
+                                <td>{{eleve.user.first_name}}</td>
+                                <td>{{eleve.user.last_name}}</td>
+                                <td>{{eleve.user.email}}</td>
+                                <td>{{eleve.telephone}}</td>
+                            </tr>
+                        </tbody>
+
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    
+<!-- start: page -->
+<div class="row">
+    <div class="col-md-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <div class="panel-actions">
+                    <a href="#" class="fa fa-caret-down"></a>
+                </div>
+
+                <h2 class="panel-title">La Liste Des Professeurs</h2>
+            </header>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table mb-none">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>telephone</th>
+                            </tr>
+                        </thead>
+                        {% for prof in listep  %}
+                        <tbody>
+                            <tr>
+                                <td><img  alt="" class="img-responsive img-rounded" src="{{ prof.avatar.url }}" width="100px" height="100px" ></td>
+                                <td>{{prof.user.first_name}}</td>
+                                <td>{{prof.user.last_name}}</td>
+                                <td>{{prof.user.email}}</td>
+                                <td>{{prof.telephone}}</td>
+                            </tr>
+                        </tbody>
+
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- start: page -->
+<div class="row">
+    <div class="col-md-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <div class="panel-actions">
+                    <a href="#" class="fa fa-caret-down"></a>
+                </div>
+
+                <h2 class="panel-title">Le Responsable</h2>
+            </header>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table mb-none">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>telephone</th>
+                            </tr>
+                        </thead>
+                        {% for resp in lister  %}
+                        <tbody>
+                            <tr>
+                                <td><img  alt="" class="img-responsive img-rounded" src="{{ resp.avatar.url }}" width="100px" height="100px" ></td>
+                                <td>{{resp.user.first_name}}</td>
+                                <td>{{resp.user.last_name}}</td>
+                                <td>{{resp.user.email}}</td>
+                                <td>{{resp.telephone}}</td>
+                            </tr>
+                        </tbody>
+
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+        <!-- start: page -->
+<div class="row">
+    <div class="col-md-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <div class="panel-actions">
+                    <a href="#" class="fa fa-caret-down"></a>
+                </div>
+
+                <h2 class="panel-title">Le Responsable Pedagogique</h2>
+            </header>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table mb-none">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>telephone</th>
+                            </tr>
+                        </thead>
+                        {% for peda in listeped  %}
+                        <tbody>
+                            <tr>
+                                <td><img  alt="" class="img-responsive img-rounded" src="{{ peda.avatar.url }}" width="100px" height="100px" ></td>
+                                <td>{{peda.user.first_name}}</td>
+                                <td>{{peda.user.last_name}}</td>
+                                <td>{{peda.user.email}}</td>
+                                <td>{{peda.telephone}}</td>
+                            </tr>
+                        </tbody>
+
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+                
+  
+			
+            
+
+{% endblock content %}

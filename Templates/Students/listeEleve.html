@@ -1,0 +1,124 @@
+{% extends "Layouts/newbase.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+<div class="row">
+    
+    <section class="panel panel-primary">
+        <header class="panel-heading">
+            <div class="panel-actions">
+                <a href="#" class="fa fa-caret-down"></a>
+            </div>
+
+            <h2 class="panel-title">Les Eleves Du Departement IT</h2>
+        </header>
+        <div class="panel-body">
+            <div>Nombre Total D'Eleves : {{total}}</div>
+        </div>
+    </section>
+
+</div>
+        <!-- start: page -->
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <div class="panel-actions">
+                            <a href="#" class="fa fa-caret-down"></a>
+                        </div>
+        
+                        <h2 class="panel-title">La Liste Complete</h2>
+                    </header>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table mb-none">
+                                <thead>
+                                    <tr>
+                                        <th>Avatar</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>telephone</th>
+                                        <th>Classe</th>
+                                        <th>Annee</th>
+                                    </tr>
+                                </thead>
+                                {% for student in listeStudent  %}
+                                <tbody>
+                                    <tr>
+                                        <td><img  alt="" class="img-responsive img-rounded" src="{{ student.avatar.url }}" width="100px" height="100px" ></td>
+                                        <td>{{student.user.first_name}}</td>
+                                        <td>{{student.user.last_name}}</td>
+                                        <td>{{student.user.email}}</td>
+                                        <td>{{student.telephone}}</td>
+                                        <td>{{student.classe.nom}}</td>
+                                        <td>{{student.classe.annee}}</td>
+                                    </tr>
+                                </tbody>
+        
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+    
+
+</div>
+                      
+<nav aria-label="Page navigation example">
+    {% if listeProf.has_other_pages %}
+
+      <ul class="pagination justify-content-center">
+
+        {% if listeProf.has_previous %}
+
+        <li class="page-item">
+          <a class="page-link active" href="?page={{ listeProf.previous_page_number }}">Previous</a>
+        </li>
+
+        {% else %}
+
+        <li class="disabled"><span>Previous</span></li>
+
+        {% endif %}
+
+        {% for i in listeProf.paginator.page_range %}
+
+        {% if listeProf.number == i %}
+
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+
+        {% else %}
+
+        <li class="page-item" ><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+
+        {% endif %}
+
+        {% endfor %}
+
+        {% if listeProf.has_next %}
+
+        <li class="page-item">
+          <a class="page-link" href="?page={{ listeProf.next_page_number }}">Next</a>
+        </li>
+
+        {% else %}
+
+        <li class="disabled"><span>Next</span></li>
+
+        {% endif %}
+      </ul>
+
+      {% endif %}
+
+    </nav>                     
+  
+			
+            
+
+{% endblock content %}

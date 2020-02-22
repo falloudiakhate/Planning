@@ -2,6 +2,10 @@ from django.db import models
 from django.db import models
 from django.contrib.auth.models import User
 
+class Classe(models.Model):
+    nom = models.CharField(max_length=50)
+    annee = models.DateField(auto_now=False, auto_now_add=False)
+
 
 class Utilisateur(models.Model):
     fonction=(
@@ -15,6 +19,9 @@ class Utilisateur(models.Model):
     telephone = models.CharField( max_length=50)
     avatar = models.ImageField(upload_to="", height_field=None, width_field=None, max_length=None)
     fonction = models.CharField(max_length=50,choices=fonction)
+    classe = models.ForeignKey(Classe, on_delete=models.CASCADE)
+    
+    
 
 
 class Publication(models.Model):
@@ -22,9 +29,9 @@ class Publication(models.Model):
     message = models.TextField()
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
 
-class Classe(models.Model):
-    nom = models.CharField(max_length=50)
-    annee = models.DateField(auto_now=False, auto_now_add=False)
+
+    
+    
     
 
 class Cahier_De_Texte(models.Model):

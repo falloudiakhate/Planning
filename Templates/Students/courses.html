@@ -1,4 +1,5 @@
-{% extends "Layouts/base.html" %}
+{% extends "Layouts/newbase.html" %}
+
 
 
 
@@ -6,88 +7,51 @@
 
 {% load static %}
 
-<!--================Home Banner Area =================-->
-<section class="banner_area">
-  <div class="banner_inner d-flex align-items-center">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6">
-          <div class="banner_content text-center">
-            <h2>Courses</h2>
-            <div class="page_link">
-              <a href="{% url 'PlanningHomePage' %}">Home</a>
-              <a href="courses.html">Courses</a>
-            </div>
+
+<div class="row">
+    
+  <section class="panel panel-primary">
+      <header class="panel-heading">
+          <div class="panel-actions">
+              <a href="#" class="fa fa-caret-down"></a>
           </div>
-        </div>
+
+          <h2 class="panel-title">Les Modules Du Maquette &nbsp; &nbsp; {{maquette.classe.nom}}  &nbsp; &nbsp; {{maquette.date}}</h2>
+      </header>
+      <div class="panel-body">
+          <div>Nombre Total De Module : {{ uc_count}}</div>
       </div>
-    </div>
-  </div>
-</section>
-<!--================End Home Banner Area =================-->
+  </section>
+
+</div>
+
 
 
 
     <!--================ Start Trainers Area =================-->
   
+<!-- start: page -->
 
-    <section class="trainer_area section_gap_top">
-      
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-12">
-            <div class="main_title">
-              
-              <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <h2 class="mb-20 justify-content-center">  Maquette &nbsp; {{maquette.classe.nom }} &nbsp;Last Update : {{maquette.date}} </h2>
-                  <span class="badge badge-primary badge-pill">Nombre Total Module : {{uc_count}}</span>
-                </li>
-               
-              </ul>
+<div class="row">
 
-            </div>
-          </div>
-        </div>
+  {% for uc in uc_stats  %}
 
-        <div class="row justify-content-center d-flex align-items-center">
-
-          {% for uc in uc_stats  %}
-            
-          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
-            <div class="thumb d-flex justify-content-sm-center">
-             <a href="{% url 'PlanningCoursesDetails' uc.id %}"><img class="img-fluid"   src= "{{ uc.avatar.url }}"/></a> 
-            </div>
-            <div class="meta-text text-sm-center">
-              <h4>Nom : {{uc.nom }}</h4>
-              <p class="designation">Charge Horaire : {{ uc.charge_horaire }}Heures</p>
-              <div class="mb-4">
-                <p>
-                UE : {{uc.ue.nom}}
-                </p>
-              </div>
-              <div class="align-items-center justify-content-center d-flex">
-                <a href="#"><i class="ti-facebook"></i></a>
-                <a href="#"><i class="ti-twitter"></i></a>
-                <a href="#"><i class="ti-linkedin"></i></a>
-                <a href="#"><i class="ti-pinterest"></i></a>
-              </div>
-            </div>
-          </div>
-
-          {% endfor %}
-
-
-
-        </div>
-
-
-        
-
+  <div class="pricing-table">
+    <div class="col-lg-3 col-sm-6">
+      <div class="plan">
+        <h3>{{uc.nom }}<span>{{ uc.charge_horaire }} H</span></h3>
+        <a class="btn btn-lg btn-primary" href="{% url 'PlanningCoursesDetails' uc.id %}">More Details</a>
+        <ul>
+          <li><b> UE </b> {{uc.ue.nom}}</li>
+          <li><b>Code UE</b> {{uc.ue.code}}</li>
+          <li><b>Coefficient</b> {{uc.coef}}</li>
+          
+        </ul>
       </div>
-    </section>
+    </div>
 
+    {% endfor %}
+  
  
     <!--================ End Trainers Area =================-->
 
