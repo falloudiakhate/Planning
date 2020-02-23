@@ -39,7 +39,7 @@ class Cahier_De_Texte(models.Model):
     titre_EC = models.CharField(max_length=50)
     date = models.DateTimeField( auto_now=False, auto_now_add=False)
     duree_EC = models.CharField(max_length=50)
-    nom_professeur = models.IntegerField()
+    nom_professeur = models.CharField(max_length=50, blank=True, null=True)
     contenu = models.TextField()
     
     

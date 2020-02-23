@@ -1,0 +1,108 @@
+{% extends "Layouts/newbase.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+<div class="row">
+
+
+<section role="main" >
+    <header class="page-header">
+        <h2>Cahier de Texte {{cahier.classe}}</h2>
+    
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+            
+                <li><span>Cahier De Texte</span></li>
+            </ol>
+    
+            <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+        </div>
+    </header>
+
+    <!-- start: page -->
+
+    <section class="panel">
+        <div class="panel-body">
+            <div class="invoice">
+                <header class="clearfix">
+                   
+                        
+                            <h2 class="h2 mt-none mb-sm text-dark text-center text-bold">CAHIER DE TEXTE {{cahier.classe}}</h2><br>
+
+
+                            
+
+                            <div class="row">
+
+                                <div class="col-sm-6 ">
+
+                                    <div class="ibtext-dark text-bold">
+
+                                       <div class="text-dark text-bold">Nom : {{cahier.classe}}</div> 
+                                        <br/>
+                                        <div class="text-dark text-bold"> Cours : {{cahier.titre_EC}}</div> 
+                                        <br/>
+                                        <div class="text-dark text-bold">Date : {{cahier.date}}</div> 
+                                        <br/>
+                                        <div class="text-dark text-bold">Professeur : {{cahier.nom_professeur}}</div> 
+
+                                    </div>
+
+                                </div>
+
+                                     
+                                    <div class="col-sm-6 text-right">
+
+                                        <div class="ib">
+                                            <img src="{% static 'assets/images/images.jpeg' %}" alt="OKLER Themes" />
+                                        </div>
+
+                                    </div>
+
+                             </div>
+                                    
+
+                                
+                                
+                            
+                    
+                       
+                    </div>
+                </header>
+
+                    <h1 class="text-center">CONTENU</h1>
+
+                <div>{{cahier.contenu}}</div>
+               
+                  
+                
+                </div>
+            </div>
+
+            
+
+            <div class="text-right mr-lg">
+                
+                <a href="{% url 'Screen' cahier.id %}" target="_blank" class="btn btn-primary ml-sm" ><i class="fa fa-print"></i> Print</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- end: page -->
+    	<!-- end: page -->
+    </section>
+
+    </div>
+
+    </div>
+
+    {% endblock content %}

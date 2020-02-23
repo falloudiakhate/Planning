@@ -129,3 +129,32 @@ def AddCahierTexte(request):
         
       form = CahierTexteForm()
       return render(request, "Students/addCahierTexte.html", locals())
+
+
+
+def CahierDeTexte(request, id):
+      
+      cahier = Cahier_De_Texte.objects.get(id=id)
+      return render(request, "Students/cahierTexte.html", locals())
+
+def ListeCahierTexte(request):
+      
+      cahier = Cahier_De_Texte.objects.all()
+      
+      page = request.GET.get('page', 1)
+
+      paginator = Paginator(cahier, 8)
+      try:
+            cahier = paginator.page(page)
+      except PageNotAnInteger:
+            cahier = paginator.page(1)
+      except EmptyPage:
+            cahier = paginator.page(paginator.num_pages)
+            
+      return render(request, "Students/ListecahierTexte.html", locals())
+
+
+def Screen(request, id):
+      
+      cahier = Cahier_De_Texte.objects.get(id=id)
+      return render(request, "Students/screen.html", locals())

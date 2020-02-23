@@ -31,6 +31,10 @@ urlpatterns = [
     path('AddUE/',views.AddUE, name = "AddUE" ),
     path('AddEC/',views.AddEC, name = "AddEC" ),
     path('AddCahierTexte/',views.AddCahierTexte, name = "AddCahierTexte" ),
+    path('CahierDeTexte/<int:id>',views.CahierDeTexte, name = "CahierDeTexte" ),
+    path('ListeCahierTexte/',views.ListeCahierTexte, name = "ListeCahierTexte" ),
+    path('Screen/<int:id>',views.Screen, name = "Screen" ),
+    
     
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
