@@ -6,7 +6,7 @@
 			<!-- start: header -->
 			<header class="header">
 				<div class="logo-container">
-					<a href="../" class="logo" style="font-size:x-large ;color:black; font-size:60px">
+					<a href="{% url 'PlanningHomePage' %}" class="logo" style="font-size:x-large ;color:black; font-size:60px; text-decoration : none">
 						PLanIT
 					</a>
 					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
@@ -197,7 +197,7 @@
 								<img src="{% static 'assets/images/!logged-user.jpg' %}" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
 							</figure>
 							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
-								<span class="name">John Doe Junior</span>
+								<span class="name">Fallou DIAKHATE</span>
 								<span class="role">administrator</span>
 							</div>
 			
@@ -339,7 +339,7 @@
                                         
                                         <ul class="nav nav-children">
 											<li>
-												<a href="{% url 'InfoClasses' %}">
+												<a href="{% url 'TimeTable' %}">
 													TimeTable
 												</a>
 									
@@ -359,7 +359,7 @@
 												</a>
 											</li>
 											<li>
-												<a href="maps-google-maps-builder.html">
+												<a href="{% url 'AddUE' %}">
 													 Update
 												</a>
 											</li>
@@ -370,6 +370,40 @@
 											</li>
 										</ul>
 									</li>
+
+
+
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-map-marker" aria-hidden="true"></i>
+											<span>CRUD TimeTable</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="{% url 'AddTimeTable' %}">
+													 Ajouter
+												</a>
+											</li>
+											<li>
+												<a href="{% url 'AddUE' %}">
+													 Update
+												</a>
+											</li>
+
+											<li>
+												<a href="{% url 'AddUE' %}">
+													 Delete
+												</a>
+											</li>
+											<li>
+												<a href="maps-vector.html">
+													 
+												</a>
+											</li>
+										</ul>
+									</li>
+
+
 									<li class="nav-parent">
 										<a>
 											<i class="fa fa-columns" aria-hidden="true"></i>
@@ -409,7 +443,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Private Account</h2>
+						<h2>Private PLanIT Account</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -418,7 +452,7 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Private Account</span></li>
+								<li><span>Private PLanIT Account</span></li>
 							</ol>
 					
 							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>

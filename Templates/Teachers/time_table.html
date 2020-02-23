@@ -1,4 +1,4 @@
-{% extends "Layouts/base.html" %}
+{% extends "Layouts/newbase.html" %}
 
 
 
@@ -6,137 +6,115 @@
 
 {% load static %}
 
-<!--================Home Banner Area =================-->
-<section class="banner_area">
-    <div class="banner_inner d-flex align-items-center">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <div class="banner_content text-center">
-              <h2>Courses</h2>
-              <div class="page_link">
-                <a href="{% url 'PlanningHomePage' %}">Home</a>
-                <a href="courses.html">Courses</a>
-              </div>
+
+<div class="row">
+    
+        <section class="panel panel-primary">
+            <header class="panel-heading">
+                <div class="panel-actions">
+                    <a href="#" class="fa fa-caret-down"></a>
+                </div>
+
+                <h2 class="panel-title">TimeTable De Toutes Les Classes Du Departement IT</h2>
+            </header>
+            <div class="panel-body">
+                <div>Nombre Total De TimeTable : {{sumtab}}</div>
             </div>
-          </div>
-        </div>
-      </div>
+        </section>
+
     </div>
-  </section>
-  <!--================End Home Banner Area =================-->
 
 
+<div class="row">
 
+
+    {% for t in tab  %}
+      
+    
+
+    <div class="pricing-table">
+        
+        <div class="col-lg-3 col-sm-6">
+            <div class="plan most-popular">
+                <div class="plan-ribbon-wrapper"><div class="plan-ribbon">TimeTable</div></div>
+                <h3>{{t.nom}} <span class="panel-heading-classeile-picture">
+                    
+                  EPT
+                    </h3>
+
+                    <object  type="application/x-pdf" title="SamplePdf" width="500" height="720">
+                        <a href="{{t.file.url}}"  class="btn btn-lg btn-primary">Voir</a> 
+                    </object>
+				
+			
+                <ul>
+                    <li><b>Classe</b> {{t.classe}}</li>
+            
+
+				</ul>
+				<ul>
+                    <li><b>Date</b> {{t.date}}</li>
+            
+
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+
+    {% endfor %}
+
+</div>
+                      
+<nav aria-label="Page navigation example">
+    {% if tab.has_other_pages %}
+
+      <ul class="pagination justify-content-center">
+
+        {% if tab.has_previous %}
+
+        <li class="page-item">
+          <a class="page-link active" href="?page={{ tab.previous_page_number }}">Previous</a>
+        </li>
+
+        {% else %}
+
+        <li class="disabled"><span>Previous</span></li>
+
+        {% endif %}
+
+        {% for i in tab.paginator.page_range %}
+
+        {% if tab.number == i %}
+
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+
+        {% else %}
+
+        <li class="page-item" ><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+
+        {% endif %}
+
+        {% endfor %}
+
+        {% if tab.has_next %}
+
+        <li class="page-item">
+          <a class="page-link" href="?page={{ tab.next_page_number }}">Next</a>
+        </li>
+
+        {% else %}
+
+        <li class="disabled"><span>Next</span></li>
+
+        {% endif %}
+      </ul>
+
+      {% endif %}
+
+    </nav>                     
   
+			
+            
 
-	<div class="container-contact100 ">
-		
-		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" method="POST" action="{% url 'PlanningTimeTable' %}">
-				{% csrf_token %}
-				<span class="contact100-form-title">
-					GENERATE TIME TABLE
-				</span>
-
-				<div class="wrap-input100 validate-input" data-validate="Name is required">
-					<span class="label-input100">Semaine du Cours</span>
-					<input class="input100" type="date" name="date" placeholder="Enter Date">
-					<span class="focus-input100"></span>
-				</div>
-
-				<div class="wrap-input100 input100-select">
-					<span class="label-input100">Moment du Cours</span>
-					<div>
-						<select class="selection-2" name="moment">
-							<option>Lundi Matin</option>
-							<option>Lundi Soir</option>
-							<option>Mardi Matin</option>
-							<option>Mardi Soir</option>
-							<option>Mercredi Matin</option>
-							<option>Jeudi Matin</option>
-							<option>Jeudi Soir</option>
-							<option>Vencredi Matin</option>
-							<option>Vendredi Soir</option>
-							<option>Samedi Matin</option>
-						</select>
-					</div>
-					<span class="focus-input100"></span>
-				</div>			
-					<div class="wrap-input100 validate-input" data-validate="Name is required">
-					<span class="label-input100">Heure Debut Du cours</span>
-					<input class="input100" type="time" name="heure_debut" placeholder="Enter Time">
-					<span class="focus-input100"></span>
-				</div>
-
-				<div class="wrap-input100 validate-input" data-validate="Name is required">
-					<span class="label-input100">Heure Fin  Du Cours</span>
-					<input class="input100" type="time" name="heure_fin" placeholder="Enter Time">
-					<span class="focus-input100"></span>
-				</div>
-                
-                <div class="wrap-input100 input100-select">
-					<span class="label-input100">Classe</span>
-					<div>
-						<select class="selection-2" name="classe">
-							{% for i in classes  %}
-
-							<option>{{i.nom}}</option>
-
-							{% endfor %}
-						</select>
-					</div>
-					<span class="focus-input100"></span>
-                </div>
-                
-                <div class="wrap-input100 input100-select">
-					<span class="label-input100">EC</span>
-					<div>
-						<select class="selection-2" name="ec">
-							{% for i in ecs  %}
-
-							<option>{{i.nom}}</option>
-
-							{% endfor %}
-						</select>
-					</div>
-					<span class="focus-input100"></span>
-                </div>
-                
-                <div class="wrap-input100 input100-select">
-					<span class="label-input100">Professeur</span>
-					<div>
-						<select class="selection-2" name="utilisateur">
-							{% for i in users %}
-
-							<option>{{i.user.username}}</option>
-
-							{% endfor %}
-						</select>
-					</div>
-					<span class="focus-input100"></span>
-				</div>
-
-				<div class="container-contact100-form-btn">
-					<div class="wrap-contact100-form-btn">
-						<div class="contact100-form-bgbtn"></div>
-						<button class="contact100-form-btn">
-							<span>
-								Submit
-								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-							</span>
-						</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-
-
-
-	<div id="dropDownSelect1"></div>
-
-
-
-    {% endblock content %}
+{% endblock content %}

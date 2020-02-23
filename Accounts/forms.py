@@ -4,10 +4,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-class Time_TableForm(ModelForm):
-    class Meta:
-         model = Time_Table
-         fields = ['moment', 'heure_debut', 'heure_fin', 'date','classe', 'ec', 'utilisateur']
          
 class  UserForm(UserCreationForm):
     class Meta:
@@ -18,6 +14,11 @@ class formInscription(forms.ModelForm):
         model = Utilisateur
         fields = ["telephone","fonction", "avatar"]       
 
+
+class TimeTableForm(ModelForm):
+    class Meta:
+       model = Time_Table
+       fields = ['nom', 'classe', 'date', 'file']
        
 
 

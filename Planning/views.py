@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect
-from Accounts.models import *
+from django.shortcuts import render, redirect, HttpResponse
 from Accounts.forms import *
 from Accounts.forms import formInscription
-from Accounts.forms import UserForm
+from Accounts.forms import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 
@@ -25,7 +24,7 @@ def Signup(request):
                 utilisateur.user=user
                 utilisateur.save()
                 
-                return redirect("PlanningTimeTable")
+               
                 
             form_utilisateur=formInscription()
             form_user=UserForm()
@@ -118,33 +117,42 @@ def ListeEleve(request, id):
 
 
 
-def PlanningTimeTable(request):
-      
-      ecs = EC.objects.all()
-      classes = Classe.objects.all()
-      users = Utilisateur.objects.all()
-      
-      if request.method == 'POST':
-            # create a form instance and populate it with data from the request:
-            form = Time_TableForm(request.POST)
-        # check whether it's valid:
-            if form.is_valid():
-            # process the data in form.cleaned_data as required
-                  form.save()
-            # redirect to a new URL:
-                  for i in [1, 2]:
-                        if i < 2:
-                              return render(request, 'Teachers/time_table.html', locals())
-                        if i == 2:
-                              return render(request, 'Planning/index.html', locals())
-                        
-                   
-            
-
-    # if a GET (or any other method) we'll create a blank form
-            else:
-                  form = Time_TableForm()
-                  return render(request, 'Teachers/time_table.html', locals())
+def TimeTable(request):
     
-      return render(request, 'Teachers/time_table.html', locals())
+    tab = Time_Table.objects.all()
+    sumtab = tab.count()
+    
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(tab, 8)
+    try:
+            tab = paginator.page(page)
+    except PageNotAnInteger:
+            tab = paginator.page(1)
+    except EmptyPage:
+            tab = paginator.page(paginator.num_pages)
+    return render(request, "Teachers/time_table.html", locals())
+
+def AddTimeTable(request):
+    classe = Classe.objects.all()
+    
+    if request.method=="POST":
+            
+            form = TimeTableForm(request.POST, request.FILES)
+    
+            
+            if form.is_valid():
+                form.save()
+                return redirect("TimeTable")
+            
+            form = TimeTableForm()
+            return render(request, "Students/addTimeTable.html", locals())
+        
+    form = TimeTableForm()
+    return render(request, "Students/addTimeTable.html", locals())
+            
+    
+
+    
+
 

@@ -30,12 +30,13 @@ urlpatterns = [
     path('Blog/',views.PlanningBlog, name = "PlanningBlog" ),
     path('BlogDetails/',views.PlanningBlogDetails, name = "PlanningBlogDetails" ),
     path('PlanningInfo/',views.PlanningInfo, name = "PlanningInfo" ),
-    path('TimeTable/',views.PlanningTimeTable, name = "PlanningTimeTable" ),
+    path('TimeTable/',views.TimeTable, name = "TimeTable" ),
     path('Signup/',views.Signup, name = "Signup" ),
     path('Login/',views.Login, name = "Login" ),
     path('InfoProf/',views.InfoProf, name = "InfoProf" ),
     path('InfoClasses/',views.InfoClasses, name = "InfoClasses" ),
     path('ListeEleve/<int:id>',views.ListeEleve, name = "ListeEleve" ),
-
+    path('AddTimeTable/',views.AddTimeTable, name = "AddTimeTable" ),
+    
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

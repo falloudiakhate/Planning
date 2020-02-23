@@ -43,7 +43,7 @@ class Cahier_De_Texte(models.Model):
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
 
 class Maquette(models.Model):
-    classe = models.ForeignKey(Classe, on_delete=models.CASCADE, blank=True, null=True)
+    nom = models.CharField( max_length=50, blank=True, null=True)
     date = models.DateField( auto_now=False, auto_now_add=False)
     description = models.TextField()
 
@@ -51,14 +51,13 @@ class UE(models.Model):
     nom = models.CharField(max_length=50)
     description = models.TextField()
     code = models.CharField( max_length=50)
-    avatar = models.ImageField(blank=True, null=True, upload_to="", height_field=None, width_field=None, max_length=None)
     maquette = models.ForeignKey(Maquette, on_delete=models.CASCADE)
 
 class EC(models.Model):
     nom = models.CharField(max_length=50)
     description = models.TextField()
-    charge_horaire = models.IntegerField()
-    coef = models.IntegerField()
+    charge_horaire = models.CharField(max_length=50)
+    coef = models.CharField(max_length=50)
     ue = models.ForeignKey(UE, on_delete=models.CASCADE)
     avatar = models.ImageField(blank=True, null=True, upload_to="", height_field=None, width_field=None, max_length=None)
 
@@ -70,27 +69,10 @@ class Dispenser_Cours(models.Model):
     uc = models.ForeignKey(EC, on_delete=models.CASCADE)
 
 class Time_Table(models.Model):
-    moment = (
-        ('Lundi Matin', 'Lundi Matin'),
-        ('Lundi Soir', 'Lundi Soir'),
-        ('Mardi Matin', 'Mardi Matin'),
-        ('Mardi Soir', 'Mardi Soir'),
-        ('Mercredi Matin', 'Mercredi Matin'),
-        ('Jeudi Matin', 'Jeudi Matin'),
-        ('Vendredi Matin', 'Vendredi Matin'),
-        ('Samedi Matin', 'Samedi Matin'),
-        ('Mercredi Soir', 'Mercredi Soir'),
-        ('Jeudi Soir', 'Jeudi Soir'),
-        ('Vendredi Soir', 'Vendredi Soir'),
-        ('Samedi Soir', 'Samedi Soir'),
-    )
-    moment = models.CharField(max_length=50, choices=moment, blank=True, null=True)
-    heure_debut = models.TimeField(auto_now=False, auto_now_add=False)
-    heure_fin = models.TimeField(auto_now=False, auto_now_add=False)
+    nom = models.CharField(blank=True, null=True, max_length=50)
     date = models.DateTimeField( auto_now=False, auto_now_add=False)
     classe = models.CharField(blank=True, null=True, max_length=50)
-    ec = models.CharField(blank=True, null=True, max_length=50)
-    utilisateur = models.CharField(blank=True, null=True, max_length=50)
+    file = models.FileField(upload_to='', blank=True, null=True)
  
     
 

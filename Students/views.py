@@ -91,4 +91,16 @@ def PlanningCoursesDetails(request, id):
 
 
 def AddMaquette(request):
+      
+      classe = Classe.objects.all()
       return render(request, "Students/addmaquette.html", locals())
+
+def AddUE(request):
+      
+      maquette = Maquette.objects.all()
+      return render(request, "Students/addue.html", locals())
+
+def AddEC(request):
+      
+      ue = UE.objects.all()
+      return render(request, "Students/addEC.html", locals())

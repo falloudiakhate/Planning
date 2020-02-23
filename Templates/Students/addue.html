@@ -30,9 +30,9 @@
     
                     </div>
 
-                    <h2 class="panel-title">Add A New Maquette</h2>
+                    <h2 class="panel-title">Add A New UE</h2>
                     <p class="panel-subtitle">
-                        Fisrt Step : Adding Maquette Informations
+                        Second Step : Adding UE Informations
                     </p>
                 </header>
                 <div class="panel-body">
@@ -40,16 +40,31 @@
                         <ul>Success</ul>
                     </div>
 
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Nom <span class="required">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="text" name="fullname" class="form-control"  required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Code <span class="required">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="text" name="fullname" class="form-control"  required/>
+                        </div>
+                    </div>
+
                     <div class="form-group">
 
-                        <label class="col-sm-3 control-label">Classe <span class="required">*</span></label>
+                        <label class="col-sm-3 control-label">Maquette <span class="required">*</span></label>
                         <div class="col-sm-7">
 
                         <select name="nom" class="form-control" required>
 
-                            {% for cls in classe  %}
+                            {% for maq in maquette  %}
 
-                            <option value="{{cls.nom}}">{{cls.nom}}</option>
+                            <option value="{{maq.nom}}">{{maq.nom}}</option>
                               
                             {% endfor %}
                             
@@ -58,20 +73,7 @@
                         <label class="error" for="company"></label>
                     </div>
 
-                    
-
-
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">Date</label>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                                <input type="text" data-plugin-datepicker class="form-control">
-                            </div>
-                        </div>
-                    </div>
+                
                     
                     <div class="form-group mb-3">
                         <label class="col-sm-3 control-label">Description <span class="required">*</span></label>

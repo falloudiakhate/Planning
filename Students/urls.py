@@ -28,5 +28,8 @@ urlpatterns = [
     path('CoursesElements/',views.PlanningCoursesElements, name = "PlanningCoursesElements" ),
     path('CoursesDetails/<int:id>',views.PlanningCoursesDetails, name = "PlanningCoursesDetails" ),
     path('AddMaquette/',views.AddMaquette, name = "AddMaquette" ),
+    path('AddUE/',views.AddUE, name = "AddUE" ),
+    path('AddEC/',views.AddEC, name = "AddEC" ),
+    
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

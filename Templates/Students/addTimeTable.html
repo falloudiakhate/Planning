@@ -12,7 +12,7 @@
     <section class="panel panel-primary">
         <header class="panel-heading">
   
-            <h2 class="panel-title text-center">Ajouter Un Nouveau Maquette</h2>
+            <h2 class="panel-title text-center">Ajouter Un Nouveau TimeTable</h2>
         </header>
     
     </section>
@@ -22,7 +22,8 @@
 
   <div class="row">
     <div class="col-md-12">
-        <form id="summary-form" action="forms-validation.html" class="form-horizontal">
+        <form id="summary-form" action="{% url 'AddTimeTable' %}" class="form-horizontal" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             <section class="panel">
                 <header class="panel-heading">
                     <div class="panel-actions">
@@ -30,9 +31,9 @@
     
                     </div>
 
-                    <h2 class="panel-title">Add A New Maquette</h2>
+                    <h2 class="panel-title">Add A New TimeTable</h2>
                     <p class="panel-subtitle">
-                        Fisrt Step : Adding Maquette Informations
+                        TimeTable De La Semaine
                     </p>
                 </header>
                 <div class="panel-body">
@@ -40,12 +41,20 @@
                         <ul>Success</ul>
                     </div>
 
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Nom <span class="required">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="text" name="nom" class="form-control"  required/>
+                        </div>
+                    </div>
+
                     <div class="form-group">
 
                         <label class="col-sm-3 control-label">Classe <span class="required">*</span></label>
                         <div class="col-sm-7">
 
-                        <select name="nom" class="form-control" required>
+                        <select name="classe" class="form-control" required>
 
                             {% for cls in classe  %}
 
@@ -58,9 +67,6 @@
                         <label class="error" for="company"></label>
                     </div>
 
-                    
-
-
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Date</label>
                         <div class="col-md-6">
@@ -68,18 +74,25 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </span>
-                                <input type="text" data-plugin-datepicker class="form-control">
+                                <input type="text" name="date" data-plugin-datepicker class="form-control">
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="form-group mb-3">
-                        <label class="col-sm-3 control-label">Description <span class="required">*</span></label>
-                        <div class="col-sm-6">
-                            <textarea name="resume" rows="6" title="Your resume is too short." class="form-control" placeholder="Enter your resume" required></textarea>
+
+                
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Fichier <span class="required">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="file" name="file" class="form-control"  required/>
                         </div>
                     </div>
+
+            
                 </div>
+
+              
 
                 <div class="row"></div>
               
