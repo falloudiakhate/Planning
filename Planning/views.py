@@ -59,8 +59,10 @@ def PlanningInfo(request):
 
 def InfoProf(request):
     
-    listeProf = Utilisateur.objects.filter(fonction = "Professeur")
-    summ = Utilisateur.objects.filter(fonction = "Professeur").count()
+    listeProf = Utilisateur.objects.filter(Q(fonction = "Professeur") | 
+                                        Q(fonction = "Responsable_pedagogique") |
+                                         Q(fonction = "Chef_department"))
+    summ =listeProf.count()
      
       
     page = request.GET.get('page', 1)

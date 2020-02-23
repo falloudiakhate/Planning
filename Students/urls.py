@@ -30,6 +30,7 @@ urlpatterns = [
     path('AddMaquette/',views.AddMaquette, name = "AddMaquette" ),
     path('AddUE/',views.AddUE, name = "AddUE" ),
     path('AddEC/',views.AddEC, name = "AddEC" ),
+    path('AddCahierTexte/',views.AddCahierTexte, name = "AddCahierTexte" ),
     
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

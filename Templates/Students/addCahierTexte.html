@@ -1,0 +1,157 @@
+{% extends "Layouts/newbase.html" %}
+
+
+
+
+{% block content %}
+
+{% load static %}
+
+<div class="row">
+    
+    <section class="panel panel-primary">
+        <header class="panel-heading">
+  
+            <h2 class="panel-title text-center">Remplissage Du Cahier De Texte</h2>
+        </header>
+    
+    </section>
+  
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+        <form id="summary-form" action="{% url 'AddCahierTexte' %}" class="form-horizontal" method="POST">
+            {% csrf_token %}
+            <section class="panel">
+                <header class="panel-heading">
+                    <div class="panel-actions">
+                        <a href="#" class="fa fa-caret-down"></a>
+    
+                    </div>
+
+                    <h2 class="panel-title">Remplir Le Cahier De Texte</h2>
+                    <p class="panel-subtitle">
+                        Pour Le Cours Du Jour
+                    </p>
+                </header>
+                <div class="panel-body">
+                    <div class="validation-message">
+                        <ul>Success</ul>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class="col-sm-3 control-label">Nom Classe <span class="required">*</span></label>
+                        <div class="col-sm-7">
+
+                        <select name="classe" class="form-control" required>
+
+                            {% for cls in classe  %}
+
+                            <option value="{{cls.nom}}">{{cls.nom}}</option>
+                              
+                            {% endfor %}
+                            
+                           
+                        </select>
+                        <label class="error" for="company"></label>
+                    </div>
+                </div>
+    
+
+                
+                    <div class="form-group">
+
+                        <label class="col-sm-3 control-label">Nom EC <span class="required">*</span></label>
+                        <div class="col-sm-7">
+
+                        <select name="titre_EC" class="form-control" required>
+
+                            {% for cls in ec  %}
+
+                            <option value="{{cls.nom}}">{{cls.nom}}</option>
+                              
+                            {% endfor %}
+                            
+                           
+                        </select>
+                        <label class="error" for="company"></label>
+                    </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Date</label>
+                        <div class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                <input type="text" name="date" data-plugin-datepicker class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Duree Cours <span class="required">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="text" name="duree_EC" class="form-control"  required/>
+                        </div>
+                    </div>
+
+            
+                    <div class="form-group">
+
+                        <label class="col-sm-3 control-label">Nom Professeur <span class="required">*</span></label>
+                        <div class="col-sm-7">
+
+                        <select name="nom_professeur" class="form-control" required>
+
+                            {% for i in utilisateur  %}
+
+                            <option value="{{i.user.first_name}} {{i.user.last_name}}">{{i.user.first_name}} {{i.user.last_name}}</option>
+                              
+                            {% endfor %}
+                            
+                           
+                        </select>
+                        <label class="error" for="company"></label>
+                       
+                    </div>
+                    
+
+                    <div class="form-group mb-3">
+                        <label class="col-sm-3 control-label">Contenu <span class="required">*</span></label>
+                        <div class="col-sm-7">
+                            <textarea name="contenu" rows="6" title="Your resume is too short." class="form-control" placeholder="Enter your resume" required></textarea>
+                        </div>
+                    </div>
+              
+
+                        <div class="row"></div>
+
+                </div>
+              
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <button class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
+                    </div>
+                </footer>
+            </section>
+        </form>
+    </div>
+
+    
+
+
+
+  {% endblock content %}

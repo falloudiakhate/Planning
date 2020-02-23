@@ -35,12 +35,14 @@ class Publication(models.Model):
     
 
 class Cahier_De_Texte(models.Model):
+    classe = models.CharField(max_length=50)
     titre_EC = models.CharField(max_length=50)
-    duree_EC = models.IntegerField()
+    date = models.DateTimeField( auto_now=False, auto_now_add=False)
+    duree_EC = models.CharField(max_length=50)
     nom_professeur = models.IntegerField()
     contenu = models.TextField()
-    date = models.DateTimeField( auto_now=False, auto_now_add=False)
-    utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
+    
+    
 
 class Maquette(models.Model):
     nom = models.CharField( max_length=50, blank=True, null=True)

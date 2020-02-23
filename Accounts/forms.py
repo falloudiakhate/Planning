@@ -22,3 +22,10 @@ class TimeTableForm(ModelForm):
        
 
 
+class CahierTexteForm(ModelForm):
+    class Meta:
+       model = Cahier_De_Texte
+       fields = ['classe', 'titre_EC', 'date', 'duree_EC', 'nom_professeur', 'contenu']
+       
+    
+    
