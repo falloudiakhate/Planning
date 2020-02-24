@@ -29,7 +29,7 @@ urlpatterns = [
     path('CoursesAboutus/',views.PlanningAboutus, name = "PlanningAboutus" ),
     path('Blog/',views.PlanningBlog, name = "PlanningBlog" ),
     path('BlogDetails/',views.PlanningBlogDetails, name = "PlanningBlogDetails" ),
-    path('PlanningInfo/',views.PlanningInfo, name = "PlanningInfo" ),
+    path('Account/',views.PlanningInfo, name = "PlanningInfo" ),
     path('TimeTable/',views.TimeTable, name = "TimeTable" ),
     path('Signup/',views.Signup, name = "Signup" ),
     path('Login/',views.Login, name = "Login" ),
@@ -37,6 +37,10 @@ urlpatterns = [
     path('InfoClasses/',views.InfoClasses, name = "InfoClasses" ),
     path('ListeEleve/<int:id>',views.ListeEleve, name = "ListeEleve" ),
     path('AddTimeTable/',views.AddTimeTable, name = "AddTimeTable" ),
+    path('ListeUpdateTimeTable/',views.ListeUpdateTimeTable, name = "ListeUpdateTimeTable" ),
+    path('UpdateTimeTable/<int:id>',views.UpdateTimeTable, name = "UpdateTimeTable" ),
+    path('DeleteTimeTable/<int:id>',views.DeleteTimeTable, name = "DeleteTimeTable" ),
+    path('Message/',views.Message, name = "Message" ),
     
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,117 @@
+{% extends "Layouts/newbase.html" %}
+
+
+
+
+{% block content %}
+
+{% load static %}
+
+<div class="row">
+    
+    <section class="panel panel-primary">
+        <header class="panel-heading">
+  
+            <h2 class="panel-title text-center">Modifier Le TimeTable</h2>
+        </header>
+    
+    </section>
+  
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+        <form id="summary-form" action="{% url 'UpdateTimeTable' time_sel.id  %}" class="form-horizontal" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <section class="panel">
+                <header class="panel-heading">
+                    <div class="panel-actions">
+                        <a href="#" class="fa fa-caret-down"></a>
+    
+                    </div>
+
+                    <h2 class="panel-title">TimeTable {{time_sel.nom}} &nbsp; &nbsp; {{time_sel.classe}}</h2>
+                    <p class="panel-subtitle">
+                        
+                    </p>
+                </header>
+                <div class="panel-body">
+                    <div class="validation-message">
+                        <ul>Success</ul>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Nom <span class="required">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="text" name="nom" class="form-control" value={{time_sel.nom}} required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-sm-3 control-label">Classe <span class="required">*</span></label>
+                        <div class="col-sm-7">
+
+                        <select name="classe" class="form-control" required>
+
+                            {% for cls in classe  %}
+
+                            <option value="{{cls.nom}}">{{cls.nom}}</option>
+                              
+                            {% endfor %}
+                            
+                           
+                        </select>
+                        <label class="error" for="company"></label>
+                    </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Date</label>
+                        <div class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span> 
+                                <input type="text" name="date" data-plugin-datepicker class="form-control" value={{time_sel.date}}>
+                            </div>
+                        </div>
+                    </div>
+
+                
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Fichier <span class="required">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="file" name="file" class="form-control" value={{time_sel.url.file}} required/>
+                        </div>
+                    </div>
+
+            
+                
+
+              
+
+                <div class="row"></div>
+                </div>
+              
+                <footer class="panel-footer">
+                    <div class="row mt-3">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <button class="btn btn-primary">Update</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
+                    </div>
+                </footer>
+
+            </section>
+        </form>
+    </div>
+
+
+
+  {% endblock content %}

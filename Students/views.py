@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from Accounts.models import *
 from Accounts.forms import *
+from Students.views import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 
@@ -12,7 +13,6 @@ def Maquettes(request):
       
       maquette = Maquette.objects.all() 
       sum_maq = Maquette.objects.count()
-      s
       page = request.GET.get('page', 1)
 
       paginator = Paginator(maquette, 6)
@@ -114,21 +114,25 @@ def AddCahierTexte(request):
       utilisateur = Utilisateur.objects.filter(Q(fonction = "Professeur") | 
                                         Q(fonction = "Responsable_pedagogique") |
                                          Q(fonction = "Chef_department"))
+      
+      if not request.user.utilisateur.fonction.endswith("Eleve"):
 
-      if request.method=="POST":
-            
-            form = CahierTexteForm(request.POST)
-    
-            
-            if form.is_valid():
-                form.save()
-                return redirect("PlanningHomePage")
+            if request.method=="POST":
+                  
+                  form = CahierTexteForm(request.POST)
+      
+                  
+                  if form.is_valid():
+                        form.save()
+                        return redirect("PlanningHomePage")
+                  
+                  form = CahierTexteForm()
+                  return render(request, "Students/addCahierTexte.html", locals())
             
             form = CahierTexteForm()
             return render(request, "Students/addCahierTexte.html", locals())
-        
-      form = CahierTexteForm()
-      return render(request, "Students/addCahierTexte.html", locals())
+      
+      return redirect("Message")
 
 
 

@@ -6,7 +6,7 @@
 			<!-- start: header -->
 			<header class="header">
 				<div class="logo-container">
-					<a href="{% url 'PlanningHomePage' %}" class="logo" style="font-size:x-large ;color:black; font-size:60px; text-decoration : none">
+					<a href="{% url 'PlanningHomePage' %}" class="logo" style="font-size:x-large ;color:black; font-size:50px; text-decoration : none">
 						PLanIT
 					</a>
 					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
@@ -248,30 +248,12 @@
 										</a>
                                     </li>
                                     
-                                    <li class="nav-active">
-										<a href="index.html">
-											<i class="fa fa-home" aria-hidden="true"></i>
-											<span>Blog</span>
-										</a>
-                                    </li>
-
-                                    <li class="nav-active">
-										<a href="index.html">
-											<i class="fa fa-home" aria-hidden="true"></i>
-											<span>Info</span>
-										</a>
-                                    </li>
+                                   
                                     
-									<li>
-										<a href="mailbox-folder.html">
-											<span class="pull-right label label-primary">182</span>
-											<i class="fa fa-envelope" aria-hidden="true"></i>
-											<span>Mailbox</span>
-										</a>
-									</li>
+									
 									<li class="nav-parent">
 										<a>
-											<i class="fa fa-copy" aria-hidden="true"></i>
+											<i class="fa fa-user" aria-hidden="true"></i>
 											<span>Mon Compte</span>
 										</a>
 										<ul class="nav nav-children">
@@ -295,22 +277,11 @@
 											
 										</ul>
 									</li>
-									<li class="nav-parent">
-										<a>
-											<i class="fa fa-tasks" aria-hidden="true"></i>
-											<span>Maquette</span>
-										</a>
-										<ul class="nav nav-children">
-											<li>
-												<a href="{% url 'PlanningCourses' %}">
-													Maquette Des Classes
-												</a>
 									
-										</ul>
-									</li>
 									<li class="nav-parent">
 										<a>
-											<i class="fa fa-list-alt" aria-hidden="true"></i>
+											
+											<i class="fa fa-university" aria-hidden="true"></i>
 											<span>Departement IT</span>
                                         </a>
                                         <ul class="nav nav-children">
@@ -337,22 +308,23 @@
 									
                                         </ul>
                                         
-                                        <ul class="nav nav-children">
-											<li>
-												<a href="{% url 'TimeTable' %}">
-													TimeTable
-												</a>
-									
-										</ul>
+                                        
 										
 									</li>
 									
 									<li class="nav-parent">
 										<a>
-											<i class="fa fa-map-marker" aria-hidden="true"></i>
-											<span>CRUD Maquette</span>
+											<i class="fa fa-list-alt"  aria-hidden="true"></i>
+											<span>Maquette</span>
 										</a>
 										<ul class="nav nav-children">
+
+											<li>
+												<a href="{% url 'PlanningCourses' %}">
+													 Maquettes Du Departement
+												</a>
+											</li>
+
 											<li>
 												<a href="{% url 'AddMaquette' %}">
 													 Ajouter
@@ -363,11 +335,7 @@
 													 Update
 												</a>
 											</li>
-											<li>
-												<a href="maps-vector.html">
-													 
-												</a>
-											</li>
+											
 										</ul>
 									</li>
 
@@ -375,33 +343,41 @@
 
 									<li class="nav-parent">
 										<a>
-											<i class="fa fa-map-marker" aria-hidden="true"></i>
-											<span>CRUD TimeTable</span>
+											<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+											<span>TimeTable</span>
 										</a>
 										<ul class="nav nav-children">
-											<li>
+
+											
+												<li>
+													<a href="{% url 'TimeTable' %}">
+														TimeTable Des Classes
+													</a>
+
+												<li>
+
+												
+										
+											
+											
 												<a href="{% url 'AddTimeTable' %}">
 													 Ajouter
 												</a>
 											</li>
 											<li>
-												<a href="{% url 'AddUE' %}">
-													 Update
+												<a href="{% url 'ListeUpdateTimeTable' %}">
+													 Update / Delete
 												</a>
 											</li>
 
-											<li>
-												<a href="{% url 'AddUE' %}">
-													 Delete
-												</a>
-											</li>
+											
 										</ul>
 									</li>
 
 									<li class="nav-parent">
 										<a>
-											<i class="fa fa-map-marker" aria-hidden="true"></i>
-											<span>CRUD CahierTexte</span>
+											<i class="fa fa-file-word-o" aria-hidden="true"></i>
+											<span>Cahier De Texte</span>
 										</a>
 										<ul class="nav nav-children">
 											<li>
@@ -429,34 +405,7 @@
 									</li>
 
 
-									<li class="nav-parent">
-										<a>
-											<i class="fa fa-columns" aria-hidden="true"></i>
-											<span>Layouts</span>
-										</a>
-										<ul class="nav nav-children">
-											<li>
-												<a href="layouts-default.html">
-													 Default
-												</a>
-											</li>
-											<li>
-												<a href="layouts-boxed.html">
-													 Boxed
-												</a>
-											</li>
-											<li>
-												<a href="layouts-menu-collapsed.html">
-													 Menu Collapsed
-												</a>
-											</li>
-											<li>
-												<a href="layouts-scroll.html">
-													 Scroll
-												</a>
-											</li>
-										</ul>
-									</li>
+									
 									
 				
 						</div>

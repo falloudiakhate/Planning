@@ -1,0 +1,124 @@
+{% extends "Layouts/newbase.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+
+<div class="row">
+    
+        <section class="panel panel-primary">
+            <header class="panel-heading">
+                <div class="panel-actions">
+                    <a href="#" class="fa fa-caret-down"></a>
+                </div>
+
+                <h2 class="panel-title">Update Des TimeTable Departement IT</h2>
+            </header>
+            <div class="panel-body">
+                <div>Nombre Total De TimeTable  : {{sumtab}}</div>
+            </div>
+        </section>
+
+    </div>
+
+
+<div class="row">
+
+
+    {% for t in tab  %}
+      
+    
+
+    <div class="pricing-table">
+        
+        
+        <div class="col-lg-3 col-sm-6">
+            <div class="plan most-popular">
+                <div class="plan-ribbon-wrapper"><div class="plan-ribbon">TimeTable</div></div>
+                <h3>{{t.nom}} <span class="panel-heading-classeile-picture">
+                    
+                  EPT
+                    </h3>
+
+                    <object  type="application/x-pdf" title="SamplePdf" width="500" height="720">
+                        <a href="{% url 'UpdateTimeTable' t.id %}"  class="btn btn-lg btn-primary">Update</a>
+                        <a href="{% url 'DeleteTimeTable' t.id %}"  class="btn btn-lg btn-primary">Delete</a> 
+                    </object>
+
+            
+				
+			
+                <ul>
+                    <li><b>Classe</b> {{t.classe}}</li>
+            
+
+				</ul>
+				<ul>
+                    <li><b>Date</b> {{t.date}}</li>
+            
+
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+
+    {% endfor %}
+
+</div>
+                      
+<nav aria-label="Page navigation example">
+    {% if tab.has_other_pages %}
+
+      <ul class="pagination justify-content-center">
+
+        {% if tab.has_previous %}
+
+        <li class="page-item">
+          <a class="page-link active" href="?page={{ tab.previous_page_number }}">Previous</a>
+        </li>
+
+        {% else %}
+
+        <li class="disabled"><span>Previous</span></li>
+
+        {% endif %}
+
+        {% for i in tab.paginator.page_range %}
+
+        {% if tab.number == i %}
+
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+
+        {% else %}
+
+        <li class="page-item" ><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+
+        {% endif %}
+
+        {% endfor %}
+
+        {% if tab.has_next %}
+
+        <li class="page-item">
+          <a class="page-link" href="?page={{ tab.next_page_number }}">Next</a>
+        </li>
+
+        {% else %}
+
+        <li class="disabled"><span>Next</span></li>
+
+        {% endif %}
+      </ul>
+
+      {% endif %}
+
+    </nav>                     
+  
+			
+            
+
+{% endblock content %}

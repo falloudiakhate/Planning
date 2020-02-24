@@ -4,6 +4,9 @@ from Accounts.forms import formInscription
 from Accounts.forms import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -43,7 +46,7 @@ def Login(request):
 
 def PlanningAboutus(request):
     
-    return render(request, "Compte/index.html")
+    return render(request, "Planning/about-us.html")
 
 def PlanningBlog(request):
     
@@ -53,6 +56,7 @@ def PlanningBlogDetails(request):
     
     return render(request, "Planning/single-blog.html")
 
+@login_required()
 def PlanningInfo(request):
     return render(request, "Compte/index.html")
 
@@ -138,23 +142,86 @@ def TimeTable(request):
 def AddTimeTable(request):
     classe = Classe.objects.all()
     
-    if request.method=="POST":
-            
-            form = TimeTableForm(request.POST, request.FILES)
+    if not request.user.utilisateur.fonction.endswith("Eleve"):
     
-            
-            if form.is_valid():
-                form.save()
-                return redirect("TimeTable")
-            
-            form = TimeTableForm()
-            return render(request, "Students/addTimeTable.html", locals())
+        if request.method=="POST":
+                
+                form = TimeTableForm(request.POST, request.FILES)
         
-    form = TimeTableForm()
-    return render(request, "Students/addTimeTable.html", locals())
+                
+                if form.is_valid():
+                    form.save()
+                    return redirect("TimeTable")
+                
+                form = TimeTableForm()
+                return render(request, "Students/addTimeTable.html", locals())
+            
+        form = TimeTableForm()
+        return render(request, "Students/addTimeTable.html", locals())
+    
+    return redirect("Message")
             
     
+def Message(request):
+    return render(request, "Students/message.html", locals())
 
     
 
+def ListeUpdateTimeTable(request):
+    
+    tab = Time_Table.objects.all()
+    sumtab = tab.count()
+    
+    page = request.GET.get('page', 1)
 
+    paginator = Paginator(tab, 8)
+    try:
+            tab = paginator.page(page)
+    except PageNotAnInteger:
+            tab = paginator.page(1)
+    except EmptyPage:
+            tab = paginator.page(paginator.num_pages)
+    return render(request, "Students/ListeTimeTable.html", locals())
+
+
+
+def UpdateTimeTable(request, id):
+    classe = Classe.objects.all()
+    time_sel = Time_Table.objects.get(id=id)
+    
+    if  request.user.utilisateur.fonction.endswith("Eleve"):
+    
+        if request.method=="POST":
+                
+                form = TimeTableForm(request.POST, request.FILES, instance=time_sel)
+        
+                
+                if form.is_valid():
+                    form.save()
+                    return redirect("TimeTable")
+                
+                form = TimeTableForm()
+                return render(request, "Students/updateTimeTable.html", locals())
+            
+        form = TimeTableForm(request.POST, request.FILES, instance=time_sel)
+        return render(request, "Students/updateTimeTable.html", locals())
+    
+    return redirect("Message")
+
+
+def DeleteTimeTable(request, id):
+    classe = Classe.objects.all()
+    time_sel = Time_Table.objects.get(id=id)
+    
+    if  request.user.utilisateur.fonction.endswith("Eleve"):
+    
+        if request.method=="POST":
+            
+                return redirect("TimeTable")
+                time_sel.delete(Commit=True)
+               
+            
+        
+        return render(request, "Students/ListeTimeTable.html", locals())
+    
+    return redirect("Message")
