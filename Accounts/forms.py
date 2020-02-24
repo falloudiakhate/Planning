@@ -12,7 +12,7 @@ class  UserForm(UserCreationForm):
 class formInscription(forms.ModelForm): 
     class Meta:
         model = Utilisateur
-        fields = ["telephone","fonction", "avatar"]       
+        fields = ["telephone","fonction", "avatar","classe"]       
 
 
 class TimeTableForm(ModelForm):
