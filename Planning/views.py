@@ -15,34 +15,33 @@ def PlanningHomePage(request):
 
 def Signup(request):
     
-        if request.method=="POST":
-            
-            form_utilisateur=formInscription(request.POST, request.FILES)
-            form_user=UserForm(request.POST)
-            
-            if form_utilisateur.is_valid() and form_user.is_valid():
-                
-                user=form_user.save()
-                utilisateur=form_utilisateur.save(commit=False)
-                utilisateur.user=user
-                utilisateur.save()
-                
-               
-                
-            form_utilisateur=formInscription()
-            form_user=UserForm()
-            return render(request,'Planning/signup.html',locals())
-    
-        return render(request,'Planning/signup.html',locals())
-        form_utilisateur=formInscription()
-        form_user=UserForm()
+    if request.method=="POST":
+        form=UserForm(request.POST)
+        if form.is_valid:
+            form.save()
+            user=User.objects.get(username=request.POST['username'])
+            id=user.id
+            return redirect('Profil',id)
         
-        
+                
+    form=UserForm()          
+    return render(request,'Planning/signup.html',locals())
+       
+              
+def EditProfil(request,id):
+    if request.method=='POST':
+        form=formInscription(request.POST,request.FILES)
+        if form.is_valid():
+            newform=form.save(commit=False)
+            newform.user= User.objects.get(id=id)
+            newform.save()
+            return redirect('Login')
+
+    form=formInscription()
+    return render(request, "Planning/profil.html",locals())
         
 def Login(request):
-    return render(request, "Planning/login.html")
-        
-        
+    return render(request,"Planning/login.html")       
 
 def PlanningAboutus(request):
     

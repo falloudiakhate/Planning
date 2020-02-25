@@ -1,11 +1,15 @@
 from django.db import models
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 
 class Classe(models.Model):
     nom = models.CharField(max_length=50)
     annee = models.DateField(auto_now=False, auto_now_add=False)
-
+    def __str__(self):
+        return self.nom
 
 class Utilisateur(models.Model):
     fonction=(
@@ -20,9 +24,6 @@ class Utilisateur(models.Model):
     avatar = models.ImageField(upload_to="", height_field=None, width_field=None, max_length=None)
     fonction = models.CharField(max_length=50,choices=fonction)
     classe = models.ForeignKey(Classe, on_delete=models.CASCADE)
-    
-    
-
 
 class Publication(models.Model):
     date = models.DateTimeField( auto_now=False, auto_now_add=False)

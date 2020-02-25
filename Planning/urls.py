@@ -32,6 +32,7 @@ urlpatterns = [
     path('Account/',views.PlanningInfo, name = "PlanningInfo" ),
     path('TimeTable/',views.TimeTable, name = "TimeTable" ),
     path('Signup/',views.Signup, name = "Signup" ),
+    path('Profil/<int:id>',views.EditProfil,name="Profil"),
     path('Login/',views.Login, name = "Login" ),
     path('InfoProf/',views.InfoProf, name = "InfoProf" ),
     path('InfoClasses/',views.InfoClasses, name = "InfoClasses" ),
