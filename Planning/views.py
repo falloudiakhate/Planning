@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth import login, authenticate
 
 
 # Create your views here.
@@ -41,7 +42,18 @@ def EditProfil(request,id):
     return render(request, "Planning/profil.html",locals())
         
 def Login(request):
-    return render(request,"Planning/login.html")       
+    if request.method=='POST':
+        form=LoginForm(request.POST)
+        if form.is_valid():
+            username=form.cleaned_data['username']
+            password=form.cleaned_data['password']
+            user=authenticate(request, username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('PlanningInfo')
+    form=LoginForm()
+    return render(request,"Planning/login.html",locals())       
 
 def PlanningAboutus(request):
     

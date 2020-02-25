@@ -16,23 +16,7 @@
 					{% csrf_token %}
                     <h3>Login FORM</h3>
                   
-					<div class="form-wrappr">
-						<input type="text" placeholder="Username" class="form-control">
-						
-					</div>
-					<div class="form-wrappr">
-						<input type="text" placeholder="Email Address" class="form-control">
-						
-					</div>
-		
-					<div class="form-wrappr">
-						<input type="password" placeholder="Password" class="form-control">
-						
-					</div>
-					<div class="form-wrappr">
-						<input type="password" placeholder="Confirm Password" class="form-control">
-						
-					</div>
+						{{form.as_p}}
 					<button>Login
 						<i class="zmdi zmdi-arrow-right"></i>
 					</button>
