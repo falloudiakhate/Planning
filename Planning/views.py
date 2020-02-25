@@ -189,7 +189,7 @@ def UpdateTimeTable(request, id):
     classe = Classe.objects.all()
     time_sel = Time_Table.objects.get(id=id)
     
-    if  request.user.utilisateur.fonction.endswith("Eleve"):
+    if not request.user.utilisateur.fonction.endswith("Eleve"):
     
         if request.method=="POST":
                 
@@ -211,17 +211,32 @@ def UpdateTimeTable(request, id):
 
 def DeleteTimeTable(request, id):
     classe = Classe.objects.all()
-    time_sel = Time_Table.objects.get(id=id)
+    time_sel = Time_Table.objects.filter(id=id)
     
-    if  request.user.utilisateur.fonction.endswith("Eleve"):
+    if not request.user.utilisateur.fonction.endswith("Eleve"):
     
-        if request.method=="POST":
-            
-                return redirect("TimeTable")
-                time_sel.delete(Commit=True)
-               
-            
-        
-        return render(request, "Students/ListeTimeTable.html", locals())
+                time_sel.delete()
+                return redirect("ListeUpdateTimeTable")
     
     return redirect("Message")
+
+
+
+def ListeUpdateMaquette(request):
+      
+      maquette = Maquette.objects.all() 
+      sum_maq = Maquette.objects.count()
+      page = request.GET.get('page', 1)
+
+      paginator = Paginator(maquette, 6)
+      
+      try:
+            
+            maquette = paginator.page(page)
+      
+      except PageNotAnInteger:
+            maquette = paginator.page(1)
+      except EmptyPage:
+            maquette = paginator.page(paginator.num_pages)     
+    
+      return render(request, "Students/ListeUpdateMaquette.html", locals())

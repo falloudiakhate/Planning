@@ -15,7 +15,7 @@
               <a href="#" class="fa fa-caret-down"></a>
           </div>
 
-          <h2 class="panel-title">Cahier de Texte</h2>
+          <h2 class="panel-title">Update OR Delete Cahier de Texte</h2>
       </header>
       <div class="panel-body">
           <div>Nombre Total De Cours : {{ sum_maq}}</div>
@@ -24,9 +24,8 @@
 
 </div>
 
+
 <div class="row">
-
-
     <!--================ Start Trainers Area =================-->
     <div class="col-lg-12 mt-0">
         <div class="table-responsive">
@@ -38,7 +37,9 @@
                         <th>date</th>
                         <th>Duree</th>
                         <th>Professeur</th>
-                        <th>Contenu</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -53,7 +54,12 @@
             <td>{{c.duree_EC}}</td>
             <td>{{c.nom_professeur}}</td>
             <td> 
-                <a  type="button" class="btn btn-lg btn-primary" href="{% url 'CahierDeTexte' c.id %}" > GO ON </a>
+                <a  type="button" class="btn btn-lg btn-primary" href="{% url 'UpdateCahierTexte' c.id %}" > UPDATE </a>
+                </td>
+          
+            <td> 
+                <a  type="button" class="btn btn-lg btn-warning" href="{% url 'DeleteCahierTexte' c.id %}" > DELETE </a>
+                </td>
             </tr>
 
             {% endfor %} 

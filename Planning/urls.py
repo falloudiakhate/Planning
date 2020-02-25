@@ -38,6 +38,7 @@ urlpatterns = [
     path('ListeEleve/<int:id>',views.ListeEleve, name = "ListeEleve" ),
     path('AddTimeTable/',views.AddTimeTable, name = "AddTimeTable" ),
     path('ListeUpdateTimeTable/',views.ListeUpdateTimeTable, name = "ListeUpdateTimeTable" ),
+    path('ListeUpdateMaquette/',views.ListeUpdateMaquette, name = "ListeUpdateMaquette" ),
     path('UpdateTimeTable/<int:id>',views.UpdateTimeTable, name = "UpdateTimeTable" ),
     path('DeleteTimeTable/<int:id>',views.DeleteTimeTable, name = "DeleteTimeTable" ),
     path('Message/',views.Message, name = "Message" ),

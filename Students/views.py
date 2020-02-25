@@ -11,7 +11,7 @@ from django.db.models import Q
 
 def Maquettes(request):
       
-      maquette = Maquette.objects.all() 
+      maquette = Maquette.objects.all().order_by('date').reverse()
       sum_maq = Maquette.objects.count()
       page = request.GET.get('page', 1)
 
@@ -115,7 +115,7 @@ def AddCahierTexte(request):
                                         Q(fonction = "Responsable_pedagogique") |
                                          Q(fonction = "Chef_department"))
       
-      if not request.user.utilisateur.fonction.endswith("Eleve"):
+      if   request.user.utilisateur.fonction.endswith("Responsable"):
 
             if request.method=="POST":
                   
@@ -124,7 +124,7 @@ def AddCahierTexte(request):
                   
                   if form.is_valid():
                         form.save()
-                        return redirect("PlanningHomePage")
+                        return redirect("ListeCahierTexte")
                   
                   form = CahierTexteForm()
                   return render(request, "Students/addCahierTexte.html", locals())
@@ -143,7 +143,7 @@ def CahierDeTexte(request, id):
 
 def ListeCahierTexte(request):
       
-      cahier = Cahier_De_Texte.objects.all()
+      cahier = Cahier_De_Texte.objects.all().order_by('date').reverse()
       
       page = request.GET.get('page', 1)
 
@@ -162,3 +162,69 @@ def Screen(request, id):
       
       cahier = Cahier_De_Texte.objects.get(id=id)
       return render(request, "Students/screen.html", locals())
+
+
+def ListeUpdateCahierTexte(request):
+      
+      cahier = Cahier_De_Texte.objects.all().order_by('date').reverse()
+      
+      page = request.GET.get('page', 1)
+
+      paginator = Paginator(cahier, 8)
+      try:
+            cahier = paginator.page(page)
+      except PageNotAnInteger:
+            cahier = paginator.page(1)
+      except EmptyPage:
+            cahier = paginator.page(paginator.num_pages)
+            
+      return render(request, "Students/ListeUpdateCahierTexte.html", locals())
+
+
+
+
+def UpdateCahierTexte(request, id):
+      
+      classe = Classe.objects.all()
+      cahier_sel = Cahier_De_Texte.objects.get(id=id)
+      ec = EC.objects.all()
+      utilisateur = Utilisateur.objects.filter(Q(fonction = "Professeur") | 
+                                        Q(fonction = "Responsable_pedagogique") |
+                                         Q(fonction = "Chef_department"))
+      
+      if  request.user.utilisateur.fonction.endswith("Responsable"):
+
+            if request.method=="POST":
+                  
+                  form = CahierTexteForm(request.POST, instance=cahier_sel)
+      
+                  
+                  if form.is_valid():
+                        form.save()
+                        return redirect("ListeUpdateCahierTexte")
+                  
+                  form = CahierTexteForm(request.POST,instance=cahier_sel)
+                  return render(request, "Students/UpdateCahierTexte.html", locals())
+            
+            form = CahierTexteForm(instance=cahier_sel)
+            return render(request, "Students/UpdateCahierTexte.html", locals())
+      
+      return redirect("Message")
+
+
+def DeleteCahierTexte(request, id):
+      
+      classe = Classe.objects.all()
+      cahier_sel = Cahier_De_Texte.objects.filter(id=id)
+      ec = EC.objects.all()
+      utilisateur = Utilisateur.objects.filter(Q(fonction = "Professeur") | 
+                                        Q(fonction = "Responsable_pedagogique") |
+                                         Q(fonction = "Chef_department"))
+      
+      if not request.user.utilisateur.fonction.endswith("Responsable"):
+
+    
+            cahier_sel.delete()
+            return redirect("ListeUpdateCahierTexte")
+      
+      return redirect("Message")

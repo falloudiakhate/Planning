@@ -33,7 +33,10 @@ urlpatterns = [
     path('AddCahierTexte/',views.AddCahierTexte, name = "AddCahierTexte" ),
     path('CahierDeTexte/<int:id>',views.CahierDeTexte, name = "CahierDeTexte" ),
     path('ListeCahierTexte/',views.ListeCahierTexte, name = "ListeCahierTexte" ),
+    path('ListeUpdateCahierTexte/',views.ListeUpdateCahierTexte, name = "ListeUpdateCahierTexte" ),
+    path('UpdateCahierTexte/<int:id>',views.UpdateCahierTexte, name = "UpdateCahierTexte" ),
     path('Screen/<int:id>',views.Screen, name = "Screen" ),
+    path('DeleteCahierTexte/<int:id>',views.DeleteCahierTexte, name = "DeleteCahierTexte" ),
     
     
     
