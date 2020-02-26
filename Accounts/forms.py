@@ -43,6 +43,14 @@ class LoginForm(forms.Form):
         super(LoginForm,self).__init__(*args,**kwargs)
         self.fields['username'].widget.attrs['class']='form-control'
         self.fields['password'].widget.attrs['class']='form-control'
+class ModifForm(forms.Form):
+    email=forms.EmailField()
+    password=forms.CharField(widget=forms.PasswordInput(),label='entrez un nouveau mot de passe')
+
+    def __init__(self,*args,**kwargs):
+        super(ModifForm,self).__init__(*args,**kwargs)
+        self.fields['password'].widget.attrs['class']='form-control'
+        self.fields['email'].widget.attrs['class']='form-control'
 
 class TimeTableForm(ModelForm):
     class Meta:

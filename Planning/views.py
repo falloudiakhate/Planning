@@ -53,7 +53,21 @@ def Login(request):
                     login(request, user)
                     return redirect('PlanningInfo')
     form=LoginForm()
-    return render(request,"Planning/login.html",locals())       
+    return render(request,"Planning/login.html",locals()) 
+def PasswordModif(request):
+    if request.method=='POST':
+        form=ModifForm(request.POST)
+        if form.is_valid():
+            password=form.cleaned_data['password']
+            email=form.cleaned_data['email']
+            user=User.objects.get(email=email)
+            user.set_password(password) 
+            user.save()  
+            messages.success(request,"votre mot de passe a bien été modifié")   
+            return redirect('Login')    
+        
+    form=ModifForm()
+    return render(request,"Planning/password.html",locals())      
 
 def PlanningAboutus(request):
     
