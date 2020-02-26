@@ -44,6 +44,6 @@ urlpatterns = [
     path('DeleteTimeTable/<int:id>',views.DeleteTimeTable, name = "DeleteTimeTable" ),
     path('Message/',views.Message, name = "Message" ),
     path('PasswordModif/',views.PasswordModif,name="PasswordModif"),
-    
+    path('logout/', views.Logout, name='Logout'), 
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

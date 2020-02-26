@@ -6,7 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate,logout
 
 
 # Create your views here.
@@ -18,6 +18,7 @@ def Signup(request):
     
     if request.method=="POST":
         form=UserForm(request.POST)
+        code=request.POST['code']
         if form.is_valid:
             form.save()
             user=User.objects.get(username=request.POST['username'])
@@ -67,7 +68,10 @@ def PasswordModif(request):
             return redirect('Login')    
         
     form=ModifForm()
-    return render(request,"Planning/password.html",locals())      
+    return render(request,"Planning/password.html",locals())  
+def Logout(request):
+    logout (request)
+    return redirect('PlanningHomePage')
 
 def PlanningAboutus(request):
     
@@ -83,7 +87,8 @@ def PlanningBlogDetails(request):
 
 @login_required()
 def PlanningInfo(request):
-    return render(request, "Compte/index.html")
+    user_profil=Utilisateur.objects.get(user=request.user)
+    return render(request, "Compte/index.html",locals())
 
 
 def InfoProf(request):

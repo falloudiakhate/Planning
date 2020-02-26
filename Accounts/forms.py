@@ -18,6 +18,7 @@ class  UserForm(UserCreationForm):
             self.fields['email'].widget.attrs['class']='form-control'
             self.fields['password1'].widget.attrs['class']='form-control' 
             self.fields['password2'].widget.attrs['class']='form-control' 
+            
                        
             self.fields['username'].help_text=''
             self.fields['password1'].help_text=''
@@ -26,7 +27,7 @@ class  UserForm(UserCreationForm):
 class formInscription(forms.ModelForm): 
     class Meta:
         model = Utilisateur
-        fields = ["telephone","fonction", "avatar","classe"]     
+        fields = ["telephone","fonction", "avatar","classe","code"]     
           
     def __init__(self,*args,**kwargs):
             super(formInscription,self).__init__(*args,**kwargs)
@@ -34,6 +35,7 @@ class formInscription(forms.ModelForm):
             self.fields['fonction'].widget.attrs['class']='form-control'
             self.fields['avatar'].widget.attrs['class']='form-control'
             self.fields['classe'].widget.attrs['class']='form-control'
+            self.fields['code'].widget.attrs['class']='form-control'
 
 class LoginForm(forms.Form):
     username=forms.CharField(max_length=50)

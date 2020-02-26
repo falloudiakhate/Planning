@@ -24,6 +24,7 @@ class Utilisateur(models.Model):
     avatar = models.ImageField(upload_to="", height_field=None, width_field=None, max_length=None)
     fonction = models.CharField(max_length=50,choices=fonction)
     classe = models.ForeignKey(Classe, on_delete=models.CASCADE)
+    code=models.CharField(max_length=10,default='null')
 
 class Publication(models.Model):
     date = models.DateTimeField( auto_now=False, auto_now_add=False)

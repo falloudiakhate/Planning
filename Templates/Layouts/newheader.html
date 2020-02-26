@@ -194,11 +194,11 @@
 					<div id="userbox" class="userbox">
 						<a href="#" data-toggle="dropdown">
 							<figure class="profile-picture">
-								<img src="{% static 'assets/images/!logged-user.jpg' %}" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+								<img src="{{ user_profil.avatar.url }}"  alt="avatar" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
 							</figure>
 							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
-								<span class="name">Fallou DIAKHATE</span>
-								<span class="role">administrator</span>
+								<span class="name">{{user_profil.user}}</span>
+								<span class="role">{{user_profil.fonction}}</span>
 							</div>
 			
 							<i class="fa custom-caret"></i>
@@ -258,12 +258,12 @@
 										</a>
 										<ul class="nav nav-children">
 											<li>
-												<a href="pages-signup.html">
+												<a href="{% url 'Logout' %}">
 													 Log Out
 												</a>
 											</li>
 											<li>
-												<a href="pages-signin.html">
+												<a href="{% url 'PasswordModif' %}">
 													 Update Password
 												</a>
 											</li>
