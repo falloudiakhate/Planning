@@ -20,6 +20,22 @@ class TimeTableForm(ModelForm):
        model = Time_Table
        fields = ['nom', 'classe', 'date', 'file']
        
+       
+class ListeTimeTableForm(ModelForm):
+    class Meta:
+       model = TimeTableListe
+       fields = ['nom', 'classe', 'date']
+       
+       
+class TimeTableFormBis(ModelForm):
+    class Meta:
+       model = TimeTable
+       fields = ['ec', 'debut', 'fin','prof', 'jour', 'timetableliste']
+       
+       
+       
+
+       
 
 
 class CahierTexteForm(ModelForm):

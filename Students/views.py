@@ -29,7 +29,6 @@ def Maquettes(request):
       return render(request, "Students/maquette.html", locals())
 
 
-
 def ECS(request, id):
       
       maquette = Maquette.objects.get(id=id)
@@ -115,7 +114,7 @@ def AddCahierTexte(request):
                                         Q(fonction = "Responsable_pedagogique") |
                                          Q(fonction = "Chef_department"))
       
-      if   request.user.utilisateur.fonction.endswith("Responsable"):
+      if not request.user.utilisateur.fonction.endswith("Responsable"):
 
             if request.method=="POST":
                   
@@ -228,3 +227,26 @@ def DeleteCahierTexte(request, id):
             return redirect("ListeUpdateCahierTexte")
       
       return redirect("Message")
+
+
+
+def DisplayTimeTable(request):
+      
+      
+      # time = TimeTable.objects.filter(timetableliste__id=id)
+      return render(request, "Teachers/DisplayTimeTable.html", locals())
+      
+      
+def DisplayListeTimeTable(request, id):
+      
+      emploi = TimeTableListe.objects.get(id=id)
+      time = TimeTable.objects.filter(timetableliste__id=id)
+      sumtime=time.count()
+      return render(request, "Teachers/ListeTimeTable.html", locals())
+
+
+def Print(request, id):
+      
+      emploi = TimeTableListe.objects.get(id=id)
+      time = TimeTable.objects.filter(timetableliste__id=id)      
+      return render(request, "Students/print.html", locals())

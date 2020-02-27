@@ -1,0 +1,224 @@
+{% extends "Layouts/newbase.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+
+<div class="row">
+
+
+    <section role="main" >
+        <header class="page-header">
+            <h2>EMPLOI DU TEMPS</h2>
+        
+            <div class="right-wrapper pull-right">
+                <ol class="breadcrumbs">
+                    <li>
+                        <a href="index.html">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+                
+                    <li><span>EMPLOI DU TEMPS</span></li>
+                </ol>
+        
+                <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+            </div>
+        </header>
+    
+        <!-- start: page -->
+    
+        <section class="panel">
+            <div class="panel-body">
+                <div class="invoice">
+                    <header class="clearfix">
+
+    
+                                
+    
+                                <div class="row">
+    
+                                    <div class="col-sm-6 ">
+    
+                                        <div class="ibtext-dark text-bold">
+
+                                            <div class="text-dark text-bold">DEPARTEMENT DU GENIE INFORMATIQUE ET TELECOMMUNICATIONS</div> 
+                                            <br/>
+
+                                            <div class="text-dark text-bold">ANNEE SCOLAIRE &nbsp; 2019-2020</div> 
+                                            <br/>
+
+    
+                                           <div class="text-dark text-bold">PLANNING DU {{emploi.date}}</div> 
+                                            <br/>
+
+
+
+
+                                            <div class="text-dark text-bold"> {{emploi.classe}}</div> 
+                                            <br/>        <br/>
+
+                                            
+                                             
+    
+                                        </div>
+    
+                                    </div>
+    
+                                         
+                                        <div class="col-sm-6 text-right">
+    
+                                            <div class="ib">
+                                                <img src="{% static 'assets/images/images.jpeg' %}" alt="OKLER Themes" />
+                                            </div>
+    
+                                        </div>
+    
+                                 </div>
+                                        
+    
+                                    
+                                    
+                                
+                        
+                           
+                        </div>
+                    </header>
+
+
+                    <div class="row">
+            
+            
+                        {% for t in time  %}
+                          
+                        
+                    
+                        <div class="pricing-table">
+                            
+                            
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="plan most-popular">
+                                    <div class="plan-ribbon-wrapper"><div class="plan-ribbon">{{t.jour}}</div></div>
+                                    <h3>{{t.ec}} <span class="panel-heading-classeile-picture">
+                                        
+                                        <img class="img-circle" src="{% static 'assets/images/images.jpeg' %}" alt="OKLER Themes" width="70px" height="70px"/></span>
+                                        </h3>
+                    
+                    
+                    
+                                
+                                    
+                                
+                                    <ul>
+                                        <li><b>Heure Debut</b> {{t.debut}}</li>
+                                        <li><b>Heure Fin</b> {{t.debut}}</li>
+                                        <li><b>Professeur</b> {{t.prof}}</li>
+                                
+                    
+                                    </ul>
+
+    
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    
+                        {% endfor %}
+
+                        <div class="pricing-table">
+                            
+                            
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="plan most-popular">
+                                    <div class="plan-ribbon-wrapper"><div class="plan-ribbon">Week-end</div></div>
+                                    <h3>{{t.ec}} <span class="panel-heading-classeile-picture">
+                                        
+                                        <img class="img-circle" src="{% static 'assets/images/images.jpeg' %}" alt="OKLER Themes" width="70px" height="70px"/></span>
+                                        </h3>
+                    
+                    
+                    
+                                
+                                    
+                                
+                                    <ul>
+                                        <li><b>TPE</b> </li>
+                                        <li><b>TD</b></li>
+                                        <li><b>Projet</b></li>
+                                
+                    
+                                    </ul>
+
+    
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    
+                    </div>
+    
+                    
+    
+                    <div class="row">
+    
+                        <div class="col-sm-6 ">
+
+                            <div class="ibtext-dark text-bold">
+
+                                <div class="text-dark text-bold">LE RESPONSABLE PEDAGOGIQUE M.WADE</div> 
+                                <br/>
+
+                              
+                                
+                                 
+
+                            </div>
+
+                        </div>
+
+                             
+                        <div class="col-sm-6 text-right">
+
+                                <div class="ib">
+
+                                    <div class="text-dark text-bold">Le Chef De Departement</div> 
+                                <br/>
+                                    
+                                </div>
+
+                        </div>
+
+                     </div>
+                            
+                   
+                
+
+                
+    
+                
+    
+                <div class="text-right mr-lg">
+
+                    
+                    
+                    <a href="{% url 'Print' emploi.id %}" target="_blank" class="btn btn-primary ml-sm" ><i class="fa fa-print"></i> Print</a>
+                </div>
+            </div>
+        </section>
+    
+        <!-- end: page -->
+            <!-- end: page -->
+        </section>
+    
+        </div>
+    
+        </div>
+			
+            
+
+{% endblock content %}

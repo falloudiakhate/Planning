@@ -37,11 +37,25 @@ urlpatterns = [
     path('InfoClasses/',views.InfoClasses, name = "InfoClasses" ),
     path('ListeEleve/<int:id>',views.ListeEleve, name = "ListeEleve" ),
     path('AddTimeTable/',views.AddTimeTable, name = "AddTimeTable" ),
+    path('AddTimeTableBis/',views.AddTimeTableBis, name = "AddTimeTableBis" ),
     path('ListeUpdateTimeTable/',views.ListeUpdateTimeTable, name = "ListeUpdateTimeTable" ),
     path('ListeUpdateMaquette/',views.ListeUpdateMaquette, name = "ListeUpdateMaquette" ),
     path('UpdateTimeTable/<int:id>',views.UpdateTimeTable, name = "UpdateTimeTable" ),
     path('DeleteTimeTable/<int:id>',views.DeleteTimeTable, name = "DeleteTimeTable" ),
     path('Message/',views.Message, name = "Message" ),
+    
+    path('ListeTimeTable/',views.ListeTimeTable, name = "ListeTimeTable" ),
+    path('RemplirTimeTable/',views.RemplirTimeTable, name = "RemplirTimeTable" ),
+    path('AddTimeTableBis1/',views.AddTimeTableBis1, name = "AddTimeTableBis1" ),
+    path('AddTimeTableBis2/',views.AddTimeTableBis2, name = "AddTimeTableBis2" ),
+    path('AddTimeTableBis3/',views.AddTimeTableBis3, name = "AddTimeTableBis3" ),
+    path('AddTimeTableBis4/',views.AddTimeTableBis4, name = "AddTimeTableBis4" ),
+    path('AddTimeTableBis5/',views.AddTimeTableBis5, name = "AddTimeTableBis5" ),
+    path('AddTimeTableBis6/',views.AddTimeTableBis6, name = "AddTimeTableBis6" ),
+    path('AddTimeTableBis7/',views.AddTimeTableBis7, name = "AddTimeTableBis7" ),
+    path('AddTimeTableBis8/',views.AddTimeTableBis8, name = "AddTimeTableBis8" ),
+    path('AddTimeTableBis9/',views.AddTimeTableBis9, name = "AddTimeTableBis9" ),
+    path('AddTimeTableBis10/',views.AddTimeTableBis10, name = "AddTimeTableBis10" ),
     
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

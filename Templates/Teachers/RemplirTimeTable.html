@@ -1,0 +1,116 @@
+{% extends "Layouts/newbase.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+
+<div class="row">
+    
+  <section class="panel panel-primary">
+      <header class="panel-heading">
+          <div class="panel-actions">
+              <a href="#" class="fa fa-caret-down"></a>
+          </div>
+
+          <h2 class="panel-title">Les TimeTable Du Du Departement IT</h2>
+      </header>
+      <div class="panel-body">
+          <div>Nombre Total De timeTable : {{ sumtime}}</div>
+      </div>
+  </section>
+
+</div>
+
+
+    <!--================ Start Trainers Area =================-->
+    <div class="col-lg-12 mt-0">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Date Semaine</th>
+                        <th>Classe</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+            {% for maq in Liste  %}
+        
+                             
+            <tr>
+            <td>{{maq.nom}}</td>
+            <td>{{maq.date}}</td>
+            <td>{{maq.classe}}</td>
+            <td> 
+                <a  type="button" class="btn btn-lg btn-primary" href="{% url 'DisplayListeTimeTable' maq.id%}" > GO ON </a>
+            </tr>
+
+            {% endfor %} 
+
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+    <!--================ End Trainers Area =================-->
+
+
+  
+
+    <nav aria-label="Page navigation example">
+      {% if maquette.has_other_pages %}
+
+        <ul class="pagination justify-content-center">
+
+          {% if maquette.has_previous %}
+
+          <li class="page-item">
+            <a class="page-link active" href="?page={{ maquette.previous_page_number }}">Previous</a>
+          </li>
+
+          {% else %}
+
+          <li class="disabled"><span>Previous</span></li>
+
+          {% endif %}
+
+          {% for i in maquette.paginator.page_range %}
+
+          {% if maquette.number == i %}
+
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+
+          {% else %}
+
+          <li class="page-item" ><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+
+          {% endif %}
+
+          {% endfor %}
+
+          {% if maquette.has_next %}
+
+          <li class="page-item">
+            <a class="page-link" href="?page={{ maquette.next_page_number }}">Next</a>
+          </li>
+
+          {% else %}
+
+          <li class="disabled"><span>Next</span></li>
+
+          {% endif %}
+        </ul>
+
+        {% endif %}
+
+      </nav>
+
+{% endblock content %}

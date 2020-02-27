@@ -75,6 +75,24 @@ class Time_Table(models.Model):
     date = models.DateTimeField( auto_now=False, auto_now_add=False)
     classe = models.CharField(blank=True, null=True, max_length=50)
     file = models.FileField(upload_to='', blank=True, null=True)
+    
+    
+class TimeTableListe(models.Model):
+    nom = models.CharField(blank=True, null=True, max_length=50)
+    date = models.DateTimeField( auto_now=False, auto_now_add=False, blank=True, null=True)
+    classe = models.CharField(blank=True, null=True, max_length=50)
+    
+class TimeTable(models.Model):
+    ec =  models.CharField(blank=True, null=True, max_length=50)
+    debut = models.TimeField( auto_now=False, auto_now_add=False, blank=True, null=True)
+    fin = models.TimeField( auto_now=False, auto_now_add=False, blank=True, null=True)
+    prof = models.CharField(blank=True, null=True, max_length=50)
+    jour=models.CharField(blank=True, null=True, max_length=50)
+    timetableliste = models.ForeignKey(TimeTableListe, on_delete=models.CASCADE,blank=True, null=True)
+    
+    
+
+    
  
     
 

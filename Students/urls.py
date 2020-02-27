@@ -36,7 +36,10 @@ urlpatterns = [
     path('ListeUpdateCahierTexte/',views.ListeUpdateCahierTexte, name = "ListeUpdateCahierTexte" ),
     path('UpdateCahierTexte/<int:id>',views.UpdateCahierTexte, name = "UpdateCahierTexte" ),
     path('Screen/<int:id>',views.Screen, name = "Screen" ),
+    path('Print/<int:id>',views.Print, name = "Print" ),
     path('DeleteCahierTexte/<int:id>',views.DeleteCahierTexte, name = "DeleteCahierTexte" ),
+    path('DisplayTimeTable<int:id>',views.DisplayTimeTable, name = "DisplayTimeTable" ),
+    path('DisplayListeTimeTable/<int:id>',views.DisplayListeTimeTable, name = "DisplayListeTimeTable" ),
     
     
     
