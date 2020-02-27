@@ -1,4 +1,3 @@
-
 {% extends "Layouts/base.html" %}
 
 
@@ -12,9 +11,9 @@
 				<div class="image-holder">
 					<img src="{% static 'imagesss/3.JPG' %}" width="500px" height="500px" alt="">
 				</div>
-				<form action="{% url 'Signup' %}" method="POST">
+				<form action="{% url 'Profil' id %}" method="POST" enctype="multipart/form-data">
 					{% csrf_token %}
-                    <h3>SIGNUP Form</h3>
+                    <h3>EDIT YOUR PROFIL</h3>
 						{{form.as_p}}
 					<button>Register
 						<i class="zmdi zmdi-arrow-right"></i>

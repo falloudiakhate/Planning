@@ -32,6 +32,7 @@ urlpatterns = [
     path('Account/',views.PlanningInfo, name = "PlanningInfo" ),
     path('TimeTable/',views.TimeTable, name = "TimeTable" ),
     path('Signup/',views.Signup, name = "Signup" ),
+    path('Profil/<int:id>',views.EditProfil,name="Profil"),
     path('Login/',views.Login, name = "Login" ),
     path('InfoProf/',views.InfoProf, name = "InfoProf" ),
     path('InfoClasses/',views.InfoClasses, name = "InfoClasses" ),
@@ -43,6 +44,7 @@ urlpatterns = [
     path('UpdateTimeTable/<int:id>',views.UpdateTimeTable, name = "UpdateTimeTable" ),
     path('DeleteTimeTable/<int:id>',views.DeleteTimeTable, name = "DeleteTimeTable" ),
     path('Message/',views.Message, name = "Message" ),
+
     
     path('ListeTimeTable/',views.ListeTimeTable, name = "ListeTimeTable" ),
     path('RemplirTimeTable/',views.RemplirTimeTable, name = "RemplirTimeTable" ),
@@ -57,5 +59,9 @@ urlpatterns = [
     path('AddTimeTableBis9/',views.AddTimeTableBis9, name = "AddTimeTableBis9" ),
     path('AddTimeTableBis10/',views.AddTimeTableBis10, name = "AddTimeTableBis10" ),
     
+
+    path('PasswordModif/',views.PasswordModif,name="PasswordModif"),
+    path('logout/', views.Logout, name='Logout'), 
+
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

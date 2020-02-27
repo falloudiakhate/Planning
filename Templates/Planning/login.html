@@ -12,30 +12,25 @@
 				<div class="image-holder">
 					<img src="{% static 'imagesss/6.JPG' %}" width="600px" height="400px" alt="">
 				</div>
+				{% if messages %}
+				<ul class="messages">
+    				{% for message in messages %}
+    				<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+       					{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        				{{ message }}
+   					 </li>
+    				{% endfor %}
+				</ul>	
+				{% endif %}
 				<form action="{% url 'Login' %}" method="POST">
 					{% csrf_token %}
                     <h3>Login FORM</h3>
                   
-					<div class="form-wrappr">
-						<input type="text" placeholder="Username" class="form-control">
-						
-					</div>
-					<div class="form-wrappr">
-						<input type="text" placeholder="Email Address" class="form-control">
-						
-					</div>
-		
-					<div class="form-wrappr">
-						<input type="password" placeholder="Password" class="form-control">
-						
-					</div>
-					<div class="form-wrappr">
-						<input type="password" placeholder="Confirm Password" class="form-control">
-						
-					</div>
+						{{form.as_p}}
 					<button>Login
 						<i class="zmdi zmdi-arrow-right"></i>
 					</button>
+					<a href="{% url 'PasswordModif' %}" class='text-center'>mot de passe oublié</a>
 				</form>
 			</div>
         </div>

@@ -7,6 +7,8 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Max
+from django.contrib.auth import login, authenticate,logout
+
 
 
 # Create your views here.
@@ -16,34 +18,62 @@ def PlanningHomePage(request):
 
 def Signup(request):
     
-        if request.method=="POST":
-            
-            form_utilisateur=formInscription(request.POST, request.FILES)
-            form_user=UserForm(request.POST)
-            
-            if form_utilisateur.is_valid() and form_user.is_valid():
-                
-                user=form_user.save()
-                utilisateur=form_utilisateur.save(commit=False)
-                utilisateur.user=user
-                utilisateur.save()
-                
-               
-                
-            form_utilisateur=formInscription()
-            form_user=UserForm()
-            return render(request,'Planning/signup.html',locals())
-    
-        return render(request,'Planning/signup.html',locals())
-        form_utilisateur=formInscription()
-        form_user=UserForm()
+    if request.method=="POST":
+        form=UserForm(request.POST)
+        code=request.POST['code']
+        if form.is_valid:
+            form.save()
+            user=User.objects.get(username=request.POST['username'])
+            id=user.id
+            return redirect('Profil',id)
         
-        
+                
+    form=UserForm()          
+    return render(request,'Planning/signup.html',locals())
+       
+              
+def EditProfil(request,id):
+    if request.method=='POST':
+        form=formInscription(request.POST,request.FILES)
+        if form.is_valid():
+            newform=form.save(commit=False)
+            newform.user= User.objects.get(id=id)
+            newform.save()
+            return redirect('Login')
+
+    form=formInscription()
+    return render(request, "Planning/profil.html",locals())
         
 def Login(request):
-    return render(request, "Planning/login.html")
+    if request.method=='POST':
+        form=LoginForm(request.POST)
+        if form.is_valid():
+            username=form.cleaned_data['username']
+            password=form.cleaned_data['password']
+            user=authenticate(request, username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('PlanningInfo')
+    form=LoginForm()
+    return render(request,"Planning/login.html",locals()) 
+def PasswordModif(request):
+    if request.method=='POST':
+        form=ModifForm(request.POST)
+        if form.is_valid():
+            password=form.cleaned_data['password']
+            email=form.cleaned_data['email']
+            user=User.objects.get(email=email)
+            user.set_password(password) 
+            user.save()  
+            messages.success(request,"votre mot de passe a bien été modifié")   
+            return redirect('Login')    
         
-        
+    form=ModifForm()
+    return render(request,"Planning/password.html",locals())  
+def Logout(request):
+    logout (request)
+    return redirect('PlanningHomePage')
 
 def PlanningAboutus(request):
     
@@ -59,7 +89,8 @@ def PlanningBlogDetails(request):
 
 @login_required()
 def PlanningInfo(request):
-    return render(request, "Compte/index.html")
+    user_profil=Utilisateur.objects.get(user=request.user)
+    return render(request, "Compte/index.html",locals())
 
 
 def InfoProf(request):
