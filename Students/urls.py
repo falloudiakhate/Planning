@@ -40,6 +40,8 @@ urlpatterns = [
     path('DeleteCahierTexte/<int:id>',views.DeleteCahierTexte, name = "DeleteCahierTexte" ),
     path('DisplayTimeTable<int:id>',views.DisplayTimeTable, name = "DisplayTimeTable" ),
     path('DisplayListeTimeTable/<int:id>',views.DisplayListeTimeTable, name = "DisplayListeTimeTable" ),
+    path('DisplayListeAbsence/',views.DisplayListeAbsence, name = "DisplayListeAbsence" ),
+    path('RemplirListeAbsence/',views.RemplirListeAbsence, name = "RemplirListeAbsence" ),
     
     
     

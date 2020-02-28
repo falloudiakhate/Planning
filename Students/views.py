@@ -250,3 +250,54 @@ def Print(request, id):
       emploi = TimeTableListe.objects.get(id=id)
       time = TimeTable.objects.filter(timetableliste__id=id)      
       return render(request, "Students/print.html", locals())
+
+
+def RemplirListeAbsence(request):
+      
+      # info = request.user.id
+      
+      # liste = Utilisateur.objects.filter(Q(classe__id=info), Q(fonction = "Eleve") | 
+      #                                  Q(fonction = "Responsable"))
+      
+      cours = EC.objects.all()
+      classe = Classe.objects.all()
+      utilisateur = Utilisateur.objects.all()
+      
+      
+      if not request.user.utilisateur.fonction.endswith("Responsable"):
+
+            if request.method=="POST":
+                  
+                  form = AbsenceForm(request.POST)
+      
+                  
+                  if form.is_valid():
+                        form.save()
+                        return redirect("DisplayListeAbsence")
+                  
+                  form = AbsenceForm()
+                  return render(request, "Students/ListeAbsence.html", locals())
+            
+            form = AbsenceForm()
+            return render(request, "Students/ListeAbsence.html", locals())
+      
+      return redirect("Message")
+      
+      
+      
+def DisplayListeAbsence(request):
+      
+      absents = Absence.objects.all()
+      
+      page = request.GET.get('page', 1)
+
+      paginator = Paginator(absents, 10)
+      try:
+            absents = paginator.page(page)
+      except PageNotAnInteger:
+            absents = paginator.page(1)
+      except EmptyPage:
+            absents = paginator.page(paginator.num_pages)
+            
+      return render(request, "Students/DisplayListeAbsence.html", locals())
+      

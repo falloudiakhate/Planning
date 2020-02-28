@@ -20,7 +20,7 @@ def Signup(request):
     
     if request.method=="POST":
         form=UserForm(request.POST)
-        code=request.POST['code']
+        # code=request.POST['code']
         if form.is_valid:
             form.save()
             user=User.objects.get(username=request.POST['username'])

@@ -1,0 +1,168 @@
+{% extends "Layouts/newbase.html" %}
+
+
+
+
+{% block content %}
+
+{% load static %}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <section class="panel form-wizard" id="w4">
+            <header class="panel-heading">
+                <div class="panel-actions">
+                    <a href="#" class="fa fa-caret-down"></a>
+                  
+                </div>
+
+                <h2 class="panel-title">LISTE D'ABSENCES</h2>
+            </header>
+            <div class="panel-body">
+                 
+                    <h2 class="text-center">ENREGISTRER UN ELEVE</h2>
+                
+
+                <form class="form-horizontal" action="{% url 'RemplirListeAbsence' %}" class="form-horizontal" method="POST" novalidate="novalidate">
+                    {% csrf_token %}
+                    <div class="tab-content">
+                        <div id="w4-profile" class="tab-pane active">
+
+
+                            <div class="form-group">
+        
+                                <label class="col-sm-3 control-label">Nom <span class="required">*</span></label>
+                                <div class="col-sm-7">
+        
+                                <select name="nom" class="form-control" required>
+        
+                                    {% for cls in utilisateur  %}
+        
+                                    <option value="{{cls.user.last_name}}">{{cls.user.last_name}}</option>
+                                      
+                                    {% endfor %}
+                                    
+                                   
+                                </select>
+                                <label class="error" for="company"></label>
+                                </div>
+        
+                            </div>
+
+
+                            <div class="form-group">
+        
+                                <label class="col-sm-3 control-label">Prenom <span class="required">*</span></label>
+                                <div class="col-sm-7">
+        
+                                <select name="prenom" class="form-control" required>
+        
+                                    {% for cls in utilisateur %}href="{% url 'RemplirListeAbsence' %}" 
+        
+                                    <option value="{{cls.user.first_name}}">{{cls.user.first_name}}</option>
+                                      
+                                    {% endfor %}
+                                    
+                                   
+                                </select>
+                                <label class="error" for="company"></label>
+                                </div>
+        
+                            </div>
+         
+
+                            <div class="form-group">
+        
+                                <label class="col-sm-3 control-label">Classe <span class="required">*</span></label>
+                                <div class="col-sm-7">
+        
+                                <select name="classe" class="form-control" required>
+        
+                                    {% for cls in classe  %}
+        
+                                    <option value="{{cls.nom}}">{{cls.nom}}</option>
+                                      
+                                    {% endfor %}
+                                    
+                                   
+                                </select>
+                                <label class="error" for="company"></label>
+                                </div>
+        
+                            </div>
+
+                            <div class="form-group">
+        
+                                <label class="col-sm-3 control-label">Cours<span class="required">*</span></label>
+                                <div class="col-sm-7">
+        
+                                <select name="cours" class="form-control" required>
+        
+                                    {% for cls in cours  %}
+        
+                                    <option value="{{cls.nom}}">{{cls.nom}}</option>
+                                      
+                                    {% endfor %}
+                                    
+                                   
+                                </select>
+                                <label class="error" for="company"></label>
+                                </div>
+        
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Date <span class="required">*</span></label>
+                                <div class="col-sm-7">
+                                    <input type="date" name="date" class="form-control"  required/>
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Heure Debut <span class="required">*</span></label>
+                                <div class="col-sm-7">
+                                    <input type="time" name="debut" class="form-control"  required/>
+                                </div>
+                            </div>
+        
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Heure Fin <span class="required">*</span></label>
+                                <div class="col-sm-7">
+                                    <input type="time" name="fin" class="form-control"  required/>
+                                </div>
+                            </div>
+
+
+                            
+        
+                           
+                        
+                        <div class="panel-footer">
+                            <ul class="pager">
+                                
+                            
+                                <li class="next">
+                                    <div class="col-sm-6 col-sm-offset-3">
+                                        <button class="btn btn-primary">Save</button>
+                                        <button type="reset" class="btn btn-default">Reset</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+        </section>
+    </div>
+</div>
+
+
+  {% endblock content %}
+
+
+

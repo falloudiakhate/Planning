@@ -1,0 +1,208 @@
+{% extends "Layouts/newbase.html" %}
+
+{% block content %}
+{% load static %}
+
+
+
+<div class="row">
+
+
+	<section role="main" >
+		<header class="page-header">
+			<h2>LISTE D'ABSENCE</h2>
+		
+			<div class="right-wrapper pull-right">
+				<ol class="breadcrumbs">
+					<li>
+						<a href="index.html">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+				
+					<li><span>LISTE D'ABSENCES</span></li>
+				</ol>
+		
+				<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+			</div>
+		</header>
+	
+		<!-- start: page -->
+	
+		<section class="panel">
+			<div class="panel-body">
+				<div class="invoice">
+					<header class="clearfix">
+					   
+							
+								<h2 class="h2 mt-none mb-sm text-dark text-center text-bold">LISTE D'ABSENCES </h2><br>
+	
+	
+								
+	
+								<div class="row">
+	
+									<div class="col-sm-6 ">
+	
+										<div class="ibtext-dark text-bold">
+	
+										   <div class="text-dark text-bold">DEPARTEMENT GENIE INFORMATIQUES ET TELECOMMUNICATIONS</div> 
+											<br/>
+											<div class="text-dark text-bold"> LE RESPONSABLE </div> 
+											<br/>
+
+											<div class="text-dark text-bold"> CLASSE </div> 
+											<br/>
+
+											<div class="text-dark text-bold"> DATE </div> 
+											<br/>
+										
+	
+										</div>
+	
+									</div>
+	
+										 
+										<div class="col-sm-6 text-right">
+	
+											<div class="ib">
+												<img src="{% static 'assets/images/images.jpeg' %}" alt="OKLER Themes" />
+											</div>
+	
+										</div>
+	
+								 </div>
+										
+	
+									
+									
+								
+						
+						   
+						</div>
+					</header>
+
+	<section class="panel">
+							<header class="panel-heading">
+								<div class="panel-actions">
+									<a href="#" class="fa fa-caret-down"></a>
+								
+								</div>
+						
+								<h2 class="panel-title">LISTE</h2>
+							</header>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="mb-md">
+											<a href="{% url 'RemplirListeAbsence' %}" ><button  class="btn btn-primary">Add <i class="fa fa-plus"></i></button></a>
+										</div>
+									</div>
+								</div>
+								<table class="table table-bordered table-striped mb-none" id="datatable-editable">
+									<thead>
+										<tr>
+											<th>Prenom</th>
+											<th>Nom</th>
+											<th>Classe</th>
+											<th>Date</th>
+											<th>Date Debut</th>
+											<th>Date Fin</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+
+									{% for i in absents  %}
+
+									<tbody>
+										<tr class="gradeX">
+											<td>{{i.prenom}}</td>
+											<td>{{i.nom}}</td>
+											<td>{{i.classe}}</td>
+											<td>{{i.date}}</td>
+											<td>{{i.debut}}</td>
+											<td>{{i.fin}}</td>
+											
+								
+											<td class="actions">
+												<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+												<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+												<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+												<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+											</td>
+										</tr>
+										
+                                    </tbody>
+									  
+									{% endfor %}
+									
+								</table>
+
+								
+
+
+   
+							</div>
+
+							
+						</section>
+					<!-- end: page -->
+
+
+					<nav aria-label="Page navigation example">
+						{% if absents.has_other_pages %}
+					
+						  <ul class="pagination justify-content-center">
+					
+							{% if absents.has_previous %}
+					
+							<li class="page-item">
+							  <a class="page-link active" href="?page={{ absents.previous_page_number }}">Previous</a>
+							</li>
+					
+							{% else %}
+					
+							<li class="disabled"><span>Previous</span></li>
+					
+							{% endif %}
+					
+							{% for i in absents.paginator.page_range %}
+					
+							{% if absents.number == i %}
+					
+							<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+					
+							{% else %}
+					
+							<li class="page-item" ><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+					
+							{% endif %}
+					
+							{% endfor %}
+					
+							{% if absents.has_next %}
+					
+							<li class="page-item">
+							  <a class="page-link" href="?page={{ absents.next_page_number }}">Next</a>
+							</li>
+					
+							{% else %}
+					
+							<li class="disabled"><span>Next</span></li>
+					
+							{% endif %}
+						  </ul>
+					
+						  {% endif %}
+					
+						</nav> 
+
+
+					
+				</section>
+
+				
+		
+
+
+{% endblock content %}

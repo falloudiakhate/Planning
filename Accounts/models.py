@@ -30,6 +30,16 @@ class Publication(models.Model):
     date = models.DateTimeField( auto_now=False, auto_now_add=False)
     message = models.TextField()
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
+    
+    
+class Absence(models.Model):
+    nom = models.CharField(max_length=50)
+    prenom = models.CharField(max_length=50)
+    classe = models.CharField(max_length=50)
+    cours = models.CharField(max_length=50)
+    debut = models.CharField(max_length=50)
+    fin = models.CharField(max_length=50)
+    date = models.DateTimeField( auto_now=False, auto_now_add=False, blank=True, null=True)
 
 
     

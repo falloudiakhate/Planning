@@ -66,6 +66,12 @@ class ListeTimeTableForm(ModelForm):
        fields = ['nom', 'classe', 'date']
        
        
+class AbsenceForm(ModelForm):
+    class Meta:
+       model = Absence
+       fields = ['nom', 'prenom', 'classe', 'cours', 'debut', 'fin', 'date']
+       
+       
 class TimeTableFormBis(ModelForm):
     class Meta:
        model = TimeTable
