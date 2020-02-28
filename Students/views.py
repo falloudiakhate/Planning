@@ -10,6 +10,7 @@ from django.db.models import Q
 
 
 def Maquettes(request):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       maquette = Maquette.objects.all().order_by('date').reverse()
       sum_maq = Maquette.objects.count()
@@ -30,6 +31,7 @@ def Maquettes(request):
 
 
 def ECS(request, id):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       maquette = Maquette.objects.get(id=id)
       
@@ -55,6 +57,7 @@ def ECS(request, id):
 
 
 def ListeStudent(request):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       
       listeStudent = Utilisateur.objects.select_related("classe").all().filter(Q(fonction = "Eleve") | 
@@ -79,10 +82,12 @@ def ListeStudent(request):
       
 
 def PlanningCoursesElements(request):
+      user_profil=Utilisateur.objects.get(user=request.user)
     
       return render(request, "Students/elements.html")
 
 def PlanningCoursesDetails(request, id):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       ecs = EC.objects.get(id=id)
     
@@ -91,22 +96,26 @@ def PlanningCoursesDetails(request, id):
 
 
 def AddMaquette(request):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       classe = Classe.objects.all()
       return render(request, "Students/addmaquette.html", locals())
 
 def AddUE(request):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       maquette = Maquette.objects.all()
       return render(request, "Students/addue.html", locals())
 
 def AddEC(request):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       ue = UE.objects.all()
       return render(request, "Students/addEC.html", locals())
 
 
 def AddCahierTexte(request):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       classe = Classe.objects.all()
       ec = EC.objects.all()
@@ -136,11 +145,13 @@ def AddCahierTexte(request):
 
 
 def CahierDeTexte(request, id):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       cahier = Cahier_De_Texte.objects.get(id=id)
       return render(request, "Students/cahierTexte.html", locals())
 
 def ListeCahierTexte(request):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       cahier = Cahier_De_Texte.objects.all().order_by('date').reverse()
       
@@ -158,12 +169,14 @@ def ListeCahierTexte(request):
 
 
 def Screen(request, id):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       cahier = Cahier_De_Texte.objects.get(id=id)
       return render(request, "Students/screen.html", locals())
 
 
 def ListeUpdateCahierTexte(request):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       cahier = Cahier_De_Texte.objects.all().order_by('date').reverse()
       
@@ -183,6 +196,7 @@ def ListeUpdateCahierTexte(request):
 
 
 def UpdateCahierTexte(request, id):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       classe = Classe.objects.all()
       cahier_sel = Cahier_De_Texte.objects.get(id=id)
@@ -212,6 +226,7 @@ def UpdateCahierTexte(request, id):
 
 
 def DeleteCahierTexte(request, id):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       classe = Classe.objects.all()
       cahier_sel = Cahier_De_Texte.objects.filter(id=id)
@@ -231,6 +246,7 @@ def DeleteCahierTexte(request, id):
 
 
 def DisplayTimeTable(request):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       
       # time = TimeTable.objects.filter(timetableliste__id=id)
@@ -238,6 +254,7 @@ def DisplayTimeTable(request):
       
       
 def DisplayListeTimeTable(request, id):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       emploi = TimeTableListe.objects.get(id=id)
       time = TimeTable.objects.filter(timetableliste__id=id)
@@ -246,6 +263,7 @@ def DisplayListeTimeTable(request, id):
 
 
 def Print(request, id):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       emploi = TimeTableListe.objects.get(id=id)
       time = TimeTable.objects.filter(timetableliste__id=id)      
@@ -253,18 +271,15 @@ def Print(request, id):
 
 
 def RemplirListeAbsence(request):
-      
-      # info = request.user.id
-      
-      # liste = Utilisateur.objects.filter(Q(classe__id=info), Q(fonction = "Eleve") | 
-      #                                  Q(fonction = "Responsable"))
+      user_profil=Utilisateur.objects.get(user=request.user)
       
       cours = EC.objects.all()
-      classe = Classe.objects.all()
+      # classes = Utilisateur.objects.filter(id=request.user.utilisateur.id)
+      classes = Classe.objects.all()
       utilisateur = Utilisateur.objects.all()
       
       
-      if not request.user.utilisateur.fonction.endswith("Responsable"):
+      if  request.user.utilisateur.fonction.endswith("Responsable"):
 
             if request.method=="POST":
                   
@@ -286,8 +301,9 @@ def RemplirListeAbsence(request):
       
       
 def DisplayListeAbsence(request):
+      user_profil=Utilisateur.objects.get(user=request.user)
       
-      absents = Absence.objects.all()
+      absents = Absence.objects.all().order_by('date').reverse()
       
       page = request.GET.get('page', 1)
 
@@ -300,4 +316,54 @@ def DisplayListeAbsence(request):
             absents = paginator.page(paginator.num_pages)
             
       return render(request, "Students/DisplayListeAbsence.html", locals())
+
+
+def UpdateListeAbsence(request, id):
       
+      user_profil=Utilisateur.objects.get(user=request.user)
+      
+      absent_sel = Absence.objects.get(id=id)
+      
+      cours = EC.objects.all()
+      classes = Classe.objects.all()
+      utilisateur = Utilisateur.objects.all()
+      
+      
+      if  request.user.utilisateur.fonction.endswith("Responsable"):
+
+            if request.method=="POST":
+                  
+                  form = AbsenceForm(request.POST, instance=absent_sel)
+      
+                  
+                  if form.is_valid():
+                        form.save()
+                        return redirect("DisplayListeAbsence")
+                  
+                  form = AbsenceForm(instance=absent_sel)
+                  return render(request, "Students/UpdateAbsence.html", locals())
+            
+            form = AbsenceForm(instance=absent_sel)
+            return render(request, "Students/UpdateAbsence.html", locals())
+      
+      return redirect("Message")
+      
+      
+      
+def DeleteAbsence(request, id):
+      user_profil=Utilisateur.objects.get(user=request.user)
+      
+      absent_sel = Absence.objects.get(id=id)
+      
+      cours = EC.objects.all()
+      classes = Classe.objects.all()
+      utilisateur = Utilisateur.objects.all()
+      
+    
+      if  request.user.utilisateur.fonction.endswith("Responsable"):
+
+    
+            absent_sel.delete()
+            return redirect("DisplayListeAbsence")
+      
+      return redirect("Message")

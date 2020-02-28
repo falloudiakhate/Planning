@@ -10,7 +10,7 @@
 
 	<section role="main" >
 		<header class="page-header">
-			<h2>LISTE D'ABSENCE</h2>
+			<h2>LISTE D'ABSENCES</h2>
 		
 			<div class="right-wrapper pull-right">
 				<ol class="breadcrumbs">
@@ -125,10 +125,8 @@
 											
 								
 											<td class="actions">
-												<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-												<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-												<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-												<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+												<a href="{% url 'UpdateListeAbsence' i.id %}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+												<a href="{% url 'DeleteAbsence' i.id %}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
 											</td>
 										</tr>
 										

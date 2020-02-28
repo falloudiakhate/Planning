@@ -42,6 +42,9 @@ urlpatterns = [
     path('DisplayListeTimeTable/<int:id>',views.DisplayListeTimeTable, name = "DisplayListeTimeTable" ),
     path('DisplayListeAbsence/',views.DisplayListeAbsence, name = "DisplayListeAbsence" ),
     path('RemplirListeAbsence/',views.RemplirListeAbsence, name = "RemplirListeAbsence" ),
+    path('UpdateListeAbsence/<int:id>',views.UpdateListeAbsence, name = "UpdateListeAbsence" ),
+    path('DeleteAbsence/<int:id>',views.DeleteAbsence, name = "DeleteAbsence" ),
+    
     
     
     
