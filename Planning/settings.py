@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "192.168.1.98", "127.0.0.1"]
 
+TIME_ZONE = 'Europe/London'
+USE_TZ = True
+
 
 # Application definition
 

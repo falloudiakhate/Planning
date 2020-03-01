@@ -4,19 +4,21 @@ from Accounts.forms import *
 from Students.views import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.utils import timezone
+from django.db.models import Max
 
 
 # Create your views here.
 
 
 def Maquettes(request):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       maquette = Maquette.objects.all().order_by('date').reverse()
       sum_maq = Maquette.objects.count()
       page = request.GET.get('page', 1)
 
-      paginator = Paginator(maquette, 6)
+      paginator = Paginator(maquette, 10)
       
       try:
             
@@ -31,7 +33,7 @@ def Maquettes(request):
 
 
 def ECS(request, id):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       maquette = Maquette.objects.get(id=id)
       
@@ -57,7 +59,7 @@ def ECS(request, id):
 
 
 def ListeStudent(request):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       
       listeStudent = Utilisateur.objects.select_related("classe").all().filter(Q(fonction = "Eleve") | 
@@ -82,7 +84,7 @@ def ListeStudent(request):
       
 
 def PlanningCoursesElements(request):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
     
       return render(request, "Students/elements.html")
 
@@ -96,26 +98,131 @@ def PlanningCoursesDetails(request, id):
 
 
 def AddMaquette(request):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       classe = Classe.objects.all()
-      return render(request, "Students/addmaquette.html", locals())
+      
+      if not request.user.utilisateur.fonction.endswith("Responsable"):
+    
+            if request.method=="POST":
+                  
+                  form = AddMaquetteForm(request.POST)
+      
+                  
+                  if form.is_valid():
+                        form.save()
+                        return redirect("AddUE")
+                  
+                  form = AddMaquetteForm()
+                  return render(request, "Students/addmaquette.html", locals())
+            
+            form = AddMaquetteForm()
+            return render(request, "Students/addmaquette.html", locals())
+      
+      return redirect("Message")
+
+
+def UpdateMaquette(request, id):
+      
+      classe = Classe.objects.all()
+      maq_sel = Maquette.objects.get(id=id)
+      
+      if not request.user.utilisateur.fonction.endswith("Responsable"):
+    
+            if request.method=="POST":
+                  
+                  form = AddMaquetteForm(request.POST, instance=maq_sel)
+      
+                  
+                  if form.is_valid():
+                        form.save()
+                        return redirect("AddUE")
+                  
+                  form = AddMaquetteForm(instance=maq_sel)
+                  return render(request, "Students/UpdateMaquette.html", locals())
+            
+            form = AddMaquetteForm(instance=maq_sel)
+            return render(request, "Students/UpdateMaquette.html", locals())
+      
+      return redirect("Message")
+
+
+def DeleteMaquette(request, id):
+      
+      classe = Classe.objects.all()
+      maq_sel = Maquette.objects.get(id=id)
+      
+      if not request.user.utilisateur.fonction.endswith("Responsable"):
+            maq_sel.delete()
+            return redirect('ListeUpdateMaquette')
+    
+      return redirect("Message")
+      
+
+     
 
 def AddUE(request):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      
+      # user_profil=Utilisateur.objects.get(user=request.user)
+      
+      maquettes = Maquette.objects.filter().aggregate(max_id=Max('pk'))
+      v = int(maquettes.get("max_id"))
       
       maquette = Maquette.objects.all()
-      return render(request, "Students/addue.html", locals())
+      
+      if not request.user.utilisateur.fonction.endswith("Responsable"):
+        
+            if request.method=="POST":
+                  
+                  form = AddUEForm(request.POST)
+      
+                  
+                  if form.is_valid():
+                        form.save()
+                        return redirect("AddEC")
+                  
+                  form = AddUEForm()
+                  return render(request, "Students/addue.html", locals())
+            
+            form = AddUEForm()
+            return render(request, "Students/addue.html", locals())
+      
+      return redirect("Message")
+  
 
 def AddEC(request):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
-      ue = UE.objects.all()
-      return render(request, "Students/addEC.html", locals())
+    
+      ues = UE.objects.filter().aggregate(max_id=Max('pk'))
+      v = int(ues.get("max_id"))
+      
+      maquette = Maquette.objects.all()
+      
+      if not request.user.utilisateur.fonction.endswith("Responsable"):
+        
+            if request.method=="POST":
+                  
+                  form = AddECForm(request.POST, request.FILES)
+      
+                  
+                  if form.is_valid():
+                        form.save()
+                        return redirect("AddEC")
+                  
+                  form = AddECForm(request.FILES)
+                  return render(request, "Students/addEC.html", locals())
+            
+            form = AddECForm(request.FILES)
+            return render(request, "Students/addEC.html", locals())
+      
+      return redirect("Message")
+      
 
 
 def AddCahierTexte(request):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       classe = Classe.objects.all()
       ec = EC.objects.all()
@@ -145,13 +252,13 @@ def AddCahierTexte(request):
 
 
 def CahierDeTexte(request, id):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       cahier = Cahier_De_Texte.objects.get(id=id)
       return render(request, "Students/cahierTexte.html", locals())
 
 def ListeCahierTexte(request):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       cahier = Cahier_De_Texte.objects.all().order_by('date').reverse()
       
@@ -169,14 +276,14 @@ def ListeCahierTexte(request):
 
 
 def Screen(request, id):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       cahier = Cahier_De_Texte.objects.get(id=id)
       return render(request, "Students/screen.html", locals())
 
 
 def ListeUpdateCahierTexte(request):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       cahier = Cahier_De_Texte.objects.all().order_by('date').reverse()
       
@@ -196,7 +303,7 @@ def ListeUpdateCahierTexte(request):
 
 
 def UpdateCahierTexte(request, id):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       classe = Classe.objects.all()
       cahier_sel = Cahier_De_Texte.objects.get(id=id)
@@ -226,7 +333,7 @@ def UpdateCahierTexte(request, id):
 
 
 def DeleteCahierTexte(request, id):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       classe = Classe.objects.all()
       cahier_sel = Cahier_De_Texte.objects.filter(id=id)
@@ -246,7 +353,7 @@ def DeleteCahierTexte(request, id):
 
 
 def DisplayTimeTable(request):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       
       # time = TimeTable.objects.filter(timetableliste__id=id)
@@ -263,7 +370,7 @@ def DisplayListeTimeTable(request, id):
 
 
 def Print(request, id):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       emploi = TimeTableListe.objects.get(id=id)
       time = TimeTable.objects.filter(timetableliste__id=id)      
@@ -271,7 +378,7 @@ def Print(request, id):
 
 
 def RemplirListeAbsence(request):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       cours = EC.objects.all()
       # classes = Utilisateur.objects.filter(id=request.user.utilisateur.id)
@@ -301,7 +408,8 @@ def RemplirListeAbsence(request):
       
       
 def DisplayListeAbsence(request):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      now = timezone.now()
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       absents = Absence.objects.all().order_by('date').reverse()
       
@@ -320,7 +428,10 @@ def DisplayListeAbsence(request):
 
 def UpdateListeAbsence(request, id):
       
-      user_profil=Utilisateur.objects.get(user=request.user)
+      
+      now = timezone.now()
+      
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       absent_sel = Absence.objects.get(id=id)
       
@@ -351,7 +462,7 @@ def UpdateListeAbsence(request, id):
       
       
 def DeleteAbsence(request, id):
-      user_profil=Utilisateur.objects.get(user=request.user)
+      # user_profil=Utilisateur.objects.get(user=request.user)
       
       absent_sel = Absence.objects.get(id=id)
       

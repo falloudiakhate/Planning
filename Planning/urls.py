@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('Students/', include('Students.urls')),
-    path('Planning/',views.PlanningHomePage, name = "PlanningHomePage" ),
+    path('',views.PlanningHomePage, name = "PlanningHomePage" ),
     path('CoursesAboutus/',views.PlanningAboutus, name = "PlanningAboutus" ),
     path('Blog/',views.PlanningBlog, name = "PlanningBlog" ),
     path('BlogDetails/',views.PlanningBlogDetails, name = "PlanningBlogDetails" ),

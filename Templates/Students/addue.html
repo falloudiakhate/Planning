@@ -22,8 +22,14 @@
 
   <div class="row">
     <div class="col-md-12">
-        <form id="summary-form" action="forms-validation.html" class="form-horizontal">
+        <div class="mb-md text-right row">
+            <a href="{% url 'ListeUpdateMaquette' %}" ><button  class="btn btn-primary">Finished  <i class="fa fa-plus"></i></button></a>
+        </div>
+        <form  action="{% url 'AddUE' %}" class="form-horizontal", method="POST">
             <section class="panel">
+
+                
+
                 <header class="panel-heading">
                     <div class="panel-actions">
                         <a href="#" class="fa fa-caret-down"></a>
@@ -34,53 +40,54 @@
                     <p class="panel-subtitle">
                         Second Step : Adding UE Informations
                     </p>
+
+                    
                 </header>
                 <div class="panel-body">
                     <div class="validation-message">
                         <ul>Success</ul>
                     </div>
 
+                    {% csrf_token %}
+
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Nom <span class="required">*</span></label>
                         <div class="col-sm-7">
-                            <input type="text" name="fullname" class="form-control"  required/>
+                            <input type="text" name="nom" class="form-control"  required/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Code <span class="required">*</span></label>
                         <div class="col-sm-7">
-                            <input type="text" name="fullname" class="form-control"  required/>
+                            <input type="text" name="code" class="form-control"  required/>
                         </div>
                     </div>
 
-                    <div class="form-group">
-
-                        <label class="col-sm-3 control-label">Maquette <span class="required">*</span></label>
-                        <div class="col-sm-7">
-
-                        <select name="nom" class="form-control" required>
-
-                            {% for maq in maquette  %}
-
-                            <option value="{{maq.nom}}">{{maq.nom}}</option>
-                              
-                            {% endfor %}
-                            
-                           
-                        </select>
-                        <label class="error" for="company"></label>
-                    </div>
-
-                
-                    
                     <div class="form-group mb-3">
                         <label class="col-sm-3 control-label">Description <span class="required">*</span></label>
                         <div class="col-sm-6">
-                            <textarea name="resume" rows="6" title="Your resume is too short." class="form-control" placeholder="Enter your resume" required></textarea>
+                            <textarea name="description" rows="6" title="Your resume is too short." class="form-control" placeholder="Enter your resume" required></textarea>
                         </div>
                     </div>
+
+                   
+                    <div class="form-group">
+        
+                        <label class="col-sm-3 control-label">Maquette Identifiant <span class="required"></span></label>
+                        <div class="col-sm-7">
+
+                        <select name="maquette" class="form-control" required>
+                            
+                            <option type="hidden" value="{{v}}">{{v}}</option>
+
+                        </select>
+                        <label class="error" for="company"></label>
+                     </div>
+
+                    </div>
+                
                 </div>
 
                 <div class="row"></div>

@@ -12,7 +12,7 @@
     <section class="panel panel-primary">
         <header class="panel-heading">
   
-            <h2 class="panel-title text-center">Ajouter Un Nouveau Maquette</h2>
+            <h2 class="panel-title text-center">Update Maquette</h2>
         </header>
     
     </section>
@@ -22,7 +22,7 @@
 
   <div class="row">
     <div class="col-md-12">
-        <form  method="POST" class="form-horizontal" action="{% url 'AddMaquette' %}">
+        <form  method="POST" class="form-horizontal" action="{% url 'UpdateMaquette' maq_sel.id %}">
            
             <section class="panel">
                 <header class="panel-heading">
@@ -30,10 +30,11 @@
                         <a href="#" class="fa fa-caret-down"></a>
     
                     </div>
+                    
 
-                    <h2 class="panel-title">Add A New Maquette</h2>
+                    <h2 class="panel-title">Update Maquette</h2>
                     <p class="panel-subtitle">
-                        Fisrt Step : Adding Maquette Informations
+                        Fisrt Step : Update Maquette Informations
                     </p>
                 </header>
                 <div class="panel-body">
@@ -48,7 +49,7 @@
                         <label class="col-sm-3 control-label">Classe <span class="required">*</span></label>
                         <div class="col-sm-7">
 
-                        <select name="nom" class="form-control" required>
+                        <select name="nom" class="form-control" value={{maq_sel.classe}} required>
 
                             {% for cls in classe  %}
 
@@ -71,7 +72,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </span>
-                                <input type="text" name = "date" data-plugin-datepicker class="form-control">
+                                <input type="text" name = "date" value={{maq_sel.date}} data-plugin-datepicker class="form-control">
                             </div>
                         </div>
                     </div>
@@ -79,7 +80,7 @@
                     <div class="form-group mb-3">
                         <label class="col-sm-3 control-label">Description <span class="required">*</span></label>
                         <div class="col-sm-6">
-                            <textarea name="description" rows="6" title="Your resume is too short." class="form-control" placeholder="Enter your resume" required></textarea>
+                            <textarea name="description"  rows="6" title="Your resume is too short." class="form-control" placeholder="Enter your resume" required>{{maq_sel.description}}</textarea>
                         </div>
                     </div>
                 </div>

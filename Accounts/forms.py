@@ -78,6 +78,23 @@ class TimeTableFormBis(ModelForm):
        fields = ['ec', 'debut', 'fin','prof', 'jour', 'timetableliste']
        
        
+class AddMaquetteForm(ModelForm):
+    class Meta:
+       model = Maquette
+       fields = ['nom', 'date', 'description']
+       
+       
+class AddUEForm(ModelForm):
+    class Meta:
+       model = UE
+       fields = ['nom', 'description', 'code', 'maquette']
+       
+
+class AddECForm(ModelForm):
+    class Meta:
+       model = EC
+       fields = ['nom', 'description', 'charge_horaire', 'coef', 'avatar', 'ue']       
+       
        
 
        

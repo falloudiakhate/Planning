@@ -14,7 +14,7 @@ from django.contrib.auth import login, authenticate,logout
 # Create your views here.
 
 def PlanningHomePage(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     return render(request,'Planning/index.html',locals())
 
 def Signup(request):
@@ -298,7 +298,7 @@ def ListeUpdateMaquette(request):
 
 
 def ListeTimeTable(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     
     classe = Classe.objects.all()
     
@@ -329,7 +329,7 @@ def ListeTimeTable(request):
 
 
 def RemplirTimeTable(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     # Liste = TimeTableListe.objects.all().reverse()
     Liste = TimeTableListe.objects.all().order_by('date')
     sumtime=Liste.count()
@@ -340,7 +340,7 @@ def RemplirTimeTable(request):
 
  
 def AddTimeTableBis(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     
 
     
@@ -380,7 +380,7 @@ def AddTimeTableBis(request):
 # <---------------------------------------------------------------------------------->
  
 def AddTimeTableBis1(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     
     classe = Classe.objects.all()
     
@@ -419,7 +419,7 @@ def AddTimeTableBis1(request):
 # <---------------------------------------------------------------------------------->
  
 def AddTimeTableBis2(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     
     timetableliste = TimeTableListe.objects.filter().aggregate(max_id=Max('pk'))
     v = int(timetableliste.get("max_id"))
@@ -457,7 +457,7 @@ def AddTimeTableBis2(request):
 # <---------------------------------------------------------------------------------->
  
 def AddTimeTableBis3(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     
     classe = Classe.objects.all()
     timetableliste = TimeTableListe.objects.filter().aggregate(max_id=Max('pk'))
@@ -494,7 +494,7 @@ def AddTimeTableBis3(request):
 # <---------------------------------------------------------------------------------->
  
 def AddTimeTableBis4(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     
     timetableliste = TimeTableListe.objects.filter().aggregate(max_id=Max('pk'))
     v = int(timetableliste.get("max_id"))
@@ -532,7 +532,7 @@ def AddTimeTableBis4(request):
 # <---------------------------------------------------------------------------------->
  
 def AddTimeTableBis5(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     
     timetableliste = TimeTableListe.objects.filter().aggregate(max_id=Max('pk'))
     v = int(timetableliste.get("max_id"))
@@ -570,7 +570,7 @@ def AddTimeTableBis5(request):
 # <---------------------------------------------------------------------------------->
  
 def AddTimeTableBis6(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     
     timetableliste = TimeTableListe.objects.filter().aggregate(max_id=Max('pk'))
     v = int(timetableliste.get("max_id"))
@@ -610,7 +610,7 @@ def AddTimeTableBis6(request):
 # <---------------------------------------------------------------------------------->
  
 def AddTimeTableBis7(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     
     timetableliste = TimeTableListe.objects.filter().aggregate(max_id=Max('pk'))
     v = int(timetableliste.get("max_id"))
@@ -648,7 +648,7 @@ def AddTimeTableBis7(request):
 # <---------------------------------------------------------------------------------->
  
 def AddTimeTableBis8(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     
     timetableliste = TimeTableListe.objects.filter().aggregate(max_id=Max('pk'))
     v = int(timetableliste.get("max_id"))
@@ -686,7 +686,7 @@ def AddTimeTableBis8(request):
 # <---------------------------------------------------------------------------------->
  
 def AddTimeTableBis9(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     
     
     timetableliste = TimeTableListe.objects.filter().aggregate(max_id=Max('pk'))
@@ -733,14 +733,14 @@ def AddTimeTableBis9(request):
             
     
 def Message(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     return render(request, "Students/message.html", locals())
 
 
 
 
 def AddTimeTableBis10(request):
-    user_profil=Utilisateur.objects.get(user=request.user)
+    # user_profil=Utilisateur.objects.get(user=request.user)
     
     timetableliste = TimeTableListe.objects.filter().aggregate(max_id=Max('pk'))
     v = int(timetableliste.get("max_id"))

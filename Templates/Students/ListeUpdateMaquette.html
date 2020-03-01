@@ -46,16 +46,16 @@
         
                              
             <tr>
-            <td>{{maq.classe.nom}}</td>
+            <td>{{maq.nom}}</td>
             <td>{{maq.date}}</td>
             <td>{{maq.description}}</td>
             <td> 
-                <a  type="button" class="btn btn-lg btn-primary" href="" > UPDATE </a>
+                <a  type="button" class="btn btn-lg btn-primary" href="{% url 'UpdateMaquette' maq.id %}" > UPDATE </a>
             </td>
 
             <td>
-                 <a  type="button" class="btn btn-lg btn-warning" href="" > DELETE </a>
-             </td>
+                 <a  type="button" class="btn btn-lg btn-warning" href="{% url 'DeleteMaquette' maq.id %}" > DELETE </a>
+             </td> 
             </tr>
 
             {% endfor %} 

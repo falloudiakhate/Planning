@@ -22,69 +22,65 @@
 
   <div class="row">
     <div class="col-md-12">
-        <form id="summary-form" action="forms-validation.html" class="form-horizontal">
+        <div class="row">
+        <div class="mb-md text-left col-lg-6">
+            <a href="{% url 'AddUE' %}" ><button  class="btn btn-primary">Add New UE For The Maquette <i class="fa fa-plus"></i></button></a>
+        </div>
+        <div class="mb-md text-right col-lg-6">
+            <a href="{% url 'PlanningCourses' %}" ><button  class="btn btn-primary">Finished  <i class="fa fa-plus"></i></button></a>
+        </div>
+    </div>
+        <form  action="{% url 'AddEC' %}" class="form-horizontal" method="POST" enctype="multipart/form-data">
             <section class="panel">
                 <header class="panel-heading">
                     <div class="panel-actions">
                         <a href="#" class="fa fa-caret-down"></a>
     
                     </div>
+                    
 
                     <h2 class="panel-title">Add A New EC</h2>
                     <p class="panel-subtitle">
                         Third Step : Adding EC Informations
+                       
                     </p>
+
+                   
                 </header>
                 <div class="panel-body">
                     <div class="validation-message">
                         <ul>Success</ul>
                     </div>
 
+                    {% csrf_token %}
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Nom <span class="required">*</span></label>
                         <div class="col-sm-7">
-                            <input type="text" name="fullname" class="form-control"  required/>
+                            <input type="text" name="nom" class="form-control"  required/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Charge Horaire <span class="required">*</span></label>
                         <div class="col-sm-7">
-                            <input type="text" name="fullname" class="form-control"  required/>
+                            <input type="text" name="charge_horaire" class="form-control"  required/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Coefficient <span class="required">*</span></label>
                         <div class="col-sm-7">
-                            <input type="text" name="fullname" class="form-control"  required/>
+                            <input type="text" name="coef" class="form-control"  required/>
                         </div>
                     </div>
 
-                    <div class="form-group">
-
-                        <label class="col-sm-3 control-label">UE <span class="required">*</span></label>
-                        <div class="col-sm-7">
-
-                        <select name="nom" class="form-control" required>
-
-                            {% for ecs in ue  %}
-
-                            <option value="{{ecs.nom}}">{{ecs.nom}}</option>
-                              
-                            {% endfor %}
-                            
-                           
-                        </select>
-                        <label class="error" for="company"></label>
-                    </div>
 
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Avatar <span class="required">*</span></label>
                         <div class="col-sm-7">
-                            <input type="file" name="fullname" class="form-control"  required/>
+                            <input type="file" name="avatar" class="form-control"  required/>
                         </div>
                     </div>
 
@@ -93,10 +89,27 @@
                     <div class="form-group mb-3">
                         <label class="col-sm-3 control-label">Description <span class="required">*</span></label>
                         <div class="col-sm-6">
-                            <textarea name="resume" rows="6" title="Your resume is too short." class="form-control" placeholder="Enter your resume" required></textarea>
+                            <textarea name="description" rows="6" title="Your resume is too short." class="form-control" placeholder="Enter your resume" required></textarea>
                         </div>
                     </div>
+                
+
+                <div class="form-group">
+        
+                    <label class="col-sm-3 control-label">UE Identifiant <span class="required"></span></label>
+                    <div class="col-sm-7">
+
+                    <select name="ue" class="form-control" required>
+                        
+                        <option type="hidden" value="{{v}}">{{v}}</option>
+
+                    </select>
+                    <label class="error" for="company"></label>
+                 </div>
+
                 </div>
+            
+            </div>
 
               
 
@@ -107,6 +120,7 @@
                         <div class="col-sm-6 col-sm-offset-3">
                             <button class="btn btn-primary">Submit</button>
                             <button type="reset" class="btn btn-default">Reset</button>
+                           
                         </div>
                     </div>
                 </footer>
